@@ -1,0 +1,14 @@
+<div id="wrapper" ng-controller="mainCtrl">
+  <h1>Hello, world!</h1>
+  {{name}}
+  <div class="panel panel-default" ng-repeat="d in someData | orderBy:-score:true">
+    <div class="panel-heading">
+      <span class="pull-right">{{d.score}} </span>
+      <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true" ng-if="d.is_accepted"></span>
+      <h3 class="panel-title"> {{d.title}}</h3>
+
+    </div>
+    <div class="panel-body" ng-bind-html="getContentAsHtml(d.body)">
+    </div>
+  </div>
+</div>
