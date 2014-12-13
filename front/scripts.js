@@ -20,12 +20,13 @@ angular.module('myfeed', ['ui.router'])
     		})
     		.state('sj.github', {
     			url: '/github',
-    			controller:'mainCtrl',
-    			templateUrl: '/client/github.html'
+    			controller:'githubCtrl',
+    			templateUrl: '/client/github.html',
     		})
 
 	}])
 	.controller('mainCtrl', mainCtrl)
+    .controller('githubCtrl', githubCtrl);
 
 
 function mainCtrl($scope, $http, $sce) {
@@ -40,8 +41,19 @@ function mainCtrl($scope, $http, $sce) {
 		.success(function(response) {
 			$scope.someData = response.items;
 			console.log(response);
+
 		})
 		.error(function() {
 			console.log("err");
 		})
+}
+
+function githubCtrl($scope, $http) {
+    $scope.repos = [];
+
+    $http.get('/repos')
+        .success(function(response) {
+            console.log(response);
+            $scope.repos = response;
+        })
 }

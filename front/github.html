@@ -1,1 +1,10 @@
-Github repos to be shown here, or something.
+  <div class="panel panel-default" ng-repeat="r in repos">
+    <div class="panel-heading">
+      <span class="pull-right">{{"value"}} </span>
+      <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true" ng-if="d.is_accepted"></span>
+      <h3 class="panel-title"> {{r.name}}</h3>
+
+    </div>
+    <div class="panel-body" ng-bind="r.description">
+    </div>
+  </div>
