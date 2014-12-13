@@ -8,15 +8,24 @@ var request = require('request'),
 	codeUrl += "?client_id="+clientId;
 	codeUrl += "&redirect_uri=http://localhost:3000/code";
 	var sof = require('./stackoverflow');
+	var github = require('./github');
 var stackOverFlowData = null;
 
-
+	//stackoverflow
 	//https://stackexchange.com/oauth?client_id=3997&scope=no_expiry,private_info&redirect_uri=http://localhost:3000/code
 
+	//github
+	//
+
 app.get('/code', sof.authRoute);
+app.get('/github/auth', github.githubAuthRoute)
 
 app.get('/stack', function(req, res) {
 	res.json(sof.getData());
+})
+
+app.get('/repos', function(req, res) {
+	res.json(github.getRepos());
 })
 
 
