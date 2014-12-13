@@ -33,7 +33,7 @@ var fetchStackExchangeData = function(endpoint) {
       'Accept-Encoding': 'gzip'
     }
 	reqData = {
-		url: "https://api.stackexchange.com/2.2/me/answers?order=desc&sort=activity&site=stackoverflow&filter=!-*f(6t*ZdXeu&access_token="+access_token+"&key="+key,
+		url: "https://api.stackexchange.com/2.2/me/answers?order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb&access_token="+access_token+"&key="+key,
 		method:"get",
 		headers: headers
 	}
