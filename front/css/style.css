@@ -1,68 +1,31 @@
-html, body {
-	height: 100%;
+/* Animations */
+/* lists */
+.animate.ng-enter, 
+.animate.ng-leave
+{ 
+	-webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	text-overflow: clip;
+	white-space:nowrap;
+} 
+
+.animate.ng-leave.animate.ng-leave-active,
+.animate.ng-enter {
+	opacity: 0;
+	width: 0px;
+	height: 0px;
 }
 
-#wrapper {
-	margin-top:60px;
+.animate.ng-enter.ng-enter-active, 
+.animate.ng-leave {
+	opacity: 1;
+	width: 150px;
+	height: 30px;
 }
-
-*, *:before, *:after {box-sizing:  border-box !important;}
-
-
-.row {
- -moz-column-width: 18em;
- -webkit-column-width: 18em;
- -moz-column-gap: 1em;
- -webkit-column-gap:1em; 
-  
-}
-
-.item {
- display: inline-block;
- padding:  .25rem;
- width:  100%; 
-}
-
-.panel {
- position:relative;
- display: block;
-}
-
-.view-animate-container {
-  position:relative;
-  height:100px!important;
-  background:white;
-  border:1px solid black;
-  height:40px;
-  overflow:hidden;
-}
-
-.view-animate {
-  padding:10px;
-}
-
-.view-animate.ng-enter, .view-animate.ng-leave {
-  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
-
-  display:block;
-  width:100%;
-  border-left:1px solid black;
-
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:10px;
-}
-
-.view-animate.ng-enter {
-  left:100%;
-}
-.view-animate.ng-enter.ng-enter-active {
-  left:0;
-}
-.view-animate.ng-leave.ng-leave-active {
-  left:-100%;
-}
+	

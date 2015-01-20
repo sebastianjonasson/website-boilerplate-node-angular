@@ -1,0 +1,37 @@
+stackoverflow view
+<div class="col-md-12">
+	<div class="col-md-3">
+		<h4>Profile data </h4>
+	</div>
+	<div class="col-md-9">
+
+		<div class="row" ng-init="order = 'title'; filter = {};">
+			<h5>Order</h5>
+			<button type="button"
+					class="btn btn-default"
+					ng-click="order = 'title'">
+					Title</button>
+			<button type="button"
+					class="btn btn-default"
+					ng-click="order = 'score'">
+					Score</button>
+			<h5>Filter</h5>
+			<button type="button"
+					class="btn btn-default"
+					ng-click="filter = {is_accepted:false}">
+					Accepted Answers</button>
+			<button type="button"
+					class="btn btn-default"
+					ng-click="filter = {is_accepted:true}">
+					Accepted Answers</button>
+			<button type="button"
+					class="btn btn-default"
+					ng-click="filter = {}">
+					none</button>
+			<div class="animate"
+				 ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:desc">
+				 <h4>{{d.title}} <small>{{d.score}}</small> {{d.is_accepted}}</h4>
+				 <hr style="border-style:dotted;" />
+			</div>
+		</div>
+	</div>

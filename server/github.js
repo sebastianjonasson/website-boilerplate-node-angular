@@ -19,7 +19,7 @@ exports.githubAuthRoute = function(req, res) {
 			params: {
 				access_token: access_token
 			},
-			url: "https://api.github.com/user/repos?access_token="+access_token,
+			url: "https://api.github.com/user/repos?type=all&access_token="+access_token,
 			headers: {
 				'User-Agent': 'Personal Website'
 			}
