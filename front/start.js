@@ -2,7 +2,9 @@
 angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
     .controller('mainCtrl', mainCtrl)
     .controller('stackOverflowController', stackOverflowController)
+    .controller('githubController', githubController)
     .factory('stackOverflowDataService', stackOverflowDataService)
+    .factory('githubDataService', githubDataService)
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', mainConfig])
 
 function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -25,12 +27,21 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                 resolve: {
                     items: function(stackOverflowDataService) {
                         return stackOverflowDataService.getData();
+                    },
+                    profile: function(stackOverflowDataService) {
+                        return stackOverflowDataService.getProfile();
                     }
                 }
             })
             .state('app.github', {
                 templateUrl: 'partials/github.html',
-                url: '/github'
+                url: '/github',
+                controller: 'githubController as git',
+                resolve: {
+                    repos: function(githubDataService) {
+                        return githubDataService.getRepos();
+                    }
+                }
             })
             .state('app.linkedin', {
                 templateUrl: 'partials/linkedin.html',
@@ -48,8 +59,15 @@ function mainCtrl($scope, ngProgress, $rootScope) {
     })
 }
 
-function stackOverflowController(items) {
-    this.items = items;
+function stackOverflowController(items, profile) {
+    this.items = items.data.items;
+    this.profile = profile.data.items[0];
+    console.log(this.profile);
+}
+
+function githubController(repos) {
+    this.repos = repos.data;
+    console.log(this.repos);
 }
 
 function stackOverflowDataService($http) {
@@ -57,10 +75,25 @@ function stackOverflowDataService($http) {
 
     stackOverflowDataService.getData = function() {
 
-        return $http.get('/stack');
+        return $http.get('/stackoverflow/items');
+    }
+
+    stackOverflowDataService.getProfile = function() {
+
+        return $http.get('/stackoverflow/profile');
     }
 
     return stackOverflowDataService;
+}
+
+function githubDataService($http) {
+    var githubDataService = {};
+
+    githubDataService.getRepos = function() {
+        return $http.get('/repos');
+    }
+
+    return githubDataService;
 }
 
 })();

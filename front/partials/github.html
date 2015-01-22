@@ -1,1 +1,12 @@
-github
+<div ng-repeat="repo in git.repos">
+<h4>
+	<a ng-href="{{repo.html_url}}"
+		   target="_blank">
+		   {{repo.name}}</a>
+		   <small>{{repo.language}}</small></h4>
+    </a>
+    <p>
+    	{{repo.description}}
+    </p>
+ <hr style="border-style:dotted;" />
+</div>

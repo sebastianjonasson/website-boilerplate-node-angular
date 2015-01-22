@@ -20,8 +20,11 @@ var stackOverFlowData = null;
 app.get('/code', sof.authRoute);
 app.get('/github/auth', github.githubAuthRoute)
 
-app.get('/stack', function(req, res) {
+app.get('/stackoverflow/items', function(req, res) {
 	res.json(sof.getData());
+})
+app.get('/stackoverflow/profile', function(req, res) {
+	res.json(sof.getProfile());
 })
 
 app.get('/repos', function(req, res) {

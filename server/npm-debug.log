@@ -1,159 +1,26 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'zlib', '--save' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
 2 info using npm@1.4.23
 3 info using node@v0.10.31
-4 warn package.json server@1.0.0 No description
-5 warn package.json server@1.0.0 No repository field.
-6 warn package.json server@1.0.0 No README data
-7 verbose readDependencies using package.json deps
-8 verbose cache add [ 'zlib', null ]
-9 verbose cache add name=undefined spec="zlib" args=["zlib",null]
-10 verbose parsed url { protocol: null,
-10 verbose parsed url   slashes: null,
-10 verbose parsed url   auth: null,
-10 verbose parsed url   host: null,
-10 verbose parsed url   port: null,
-10 verbose parsed url   hostname: null,
-10 verbose parsed url   hash: null,
-10 verbose parsed url   search: null,
-10 verbose parsed url   query: null,
-10 verbose parsed url   pathname: 'zlib',
-10 verbose parsed url   path: 'zlib',
-10 verbose parsed url   href: 'zlib' }
-11 silly lockFile 57968f12-zlib zlib
-12 verbose lock zlib /Users/purplescout/.npm/57968f12-zlib.lock
-13 silly lockFile 57968f12-zlib zlib
-14 silly lockFile 57968f12-zlib zlib
-15 verbose addNamed [ 'zlib', '' ]
-16 verbose addNamed [ null, '*' ]
-17 silly lockFile f86964f4-zlib zlib@
-18 verbose lock zlib@ /Users/purplescout/.npm/f86964f4-zlib.lock
-19 silly addNameRange { name: 'zlib', range: '*', hasData: false }
-20 verbose request where is /zlib
-21 verbose request registry https://registry.npmjs.org/
-22 verbose request id 0e1f6a55dcb3fccc
-23 verbose url raw /zlib
-24 verbose url resolving [ 'https://registry.npmjs.org/', './zlib' ]
-25 verbose url resolved https://registry.npmjs.org/zlib
-26 verbose request where is https://registry.npmjs.org/zlib
-27 info trying registry request attempt 1 at 19:31:35
-28 http GET https://registry.npmjs.org/zlib
-29 http 200 https://registry.npmjs.org/zlib
-30 silly registry.get cb [ 200,
-30 silly registry.get   { date: 'Tue, 09 Dec 2014 18:31:36 GMT',
-30 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-30 silly registry.get     etag: '"CNV983HRUYXCZU369A2RO56AD"',
-30 silly registry.get     'content-type': 'application/json',
-30 silly registry.get     'cache-control': 'max-age=60',
-30 silly registry.get     'content-length': '6082',
-30 silly registry.get     'accept-ranges': 'bytes',
-30 silly registry.get     via: '1.1 varnish',
-30 silly registry.get     age: '0',
-30 silly registry.get     'x-served-by': 'cache-ams4146-AMS',
-30 silly registry.get     'x-cache': 'MISS',
-30 silly registry.get     'x-cache-hits': '0',
-30 silly registry.get     'x-timer': 'S1418149896.195291,VS0,VE665',
-30 silly registry.get     vary: 'Accept',
-30 silly registry.get     'keep-alive': 'timeout=10, max=50',
-30 silly registry.get     connection: 'Keep-Alive' } ]
-31 silly addNameRange number 2 { name: 'zlib', range: '*', hasData: true }
-32 silly addNameRange versions [ 'zlib',
-32 silly addNameRange   [ '1.0.0', '1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.0.5' ] ]
-33 verbose addNamed [ 'zlib', '1.0.5' ]
-34 verbose addNamed [ '1.0.5', '1.0.5' ]
-35 silly lockFile 024ae364-zlib-1-0-5 zlib@1.0.5
-36 verbose lock zlib@1.0.5 /Users/purplescout/.npm/024ae364-zlib-1-0-5.lock
-37 silly lockFile 53bbe3fb-ry-npmjs-org-zlib-zlib-1-0-5-tgz https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-38 verbose lock https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz /Users/purplescout/.npm/53bbe3fb-ry-npmjs-org-zlib-zlib-1-0-5-tgz.lock
-39 verbose addRemoteTarball [ 'https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz',
-39 verbose addRemoteTarball   '6e7c972fc371c645a6afb03ab14769def114fcc0' ]
-40 info retry fetch attempt 1 at 19:31:37
-41 verbose fetch to= /tmp/npm-33641-aXrd2jyj/registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-42 http GET https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-43 http 200 https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-44 silly lockFile 53bbe3fb-ry-npmjs-org-zlib-zlib-1-0-5-tgz https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-45 silly lockFile 53bbe3fb-ry-npmjs-org-zlib-zlib-1-0-5-tgz https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
-46 silly lockFile 024ae364-zlib-1-0-5 zlib@1.0.5
-47 silly lockFile 024ae364-zlib-1-0-5 zlib@1.0.5
-48 silly lockFile f86964f4-zlib zlib@
-49 silly lockFile f86964f4-zlib zlib@
-50 silly resolved [ { name: 'zlib',
-50 silly resolved     description: 'Simple, synchronous deflate/inflate for buffers',
-50 silly resolved     version: '1.0.5',
-50 silly resolved     homepage: 'https://github.com/kkaefer/node-zlib',
-50 silly resolved     author: { name: 'Konstantin Käfer', email: 'kkaefer@gmail.com' },
-50 silly resolved     repository: { type: 'git', url: 'git://github.com/kkaefer/node-zlib.git' },
-50 silly resolved     engines: { node: '>=0.2.0' },
-50 silly resolved     licenses: [ [Object] ],
-50 silly resolved     main: './lib/zlib',
-50 silly resolved     _npmJsonOpts:
-50 silly resolved      { file: '/Users/kkaefer/.npm/zlib/1.0.5/package/package.json',
-50 silly resolved        contributors: false,
-50 silly resolved        serverjs: false,
-50 silly resolved        wscript: true },
-50 silly resolved     _id: 'zlib@1.0.5',
-50 silly resolved     scripts: { preinstall: 'node-waf clean || true; node-waf configure build' },
-50 silly resolved     dependencies: {},
-50 silly resolved     devDependencies: {},
-50 silly resolved     _engineSupported: true,
-50 silly resolved     _npmVersion: '1.0.23',
-50 silly resolved     _nodeVersion: 'v0.4.9',
-50 silly resolved     _defaultsLoaded: true,
-50 silly resolved     dist:
-50 silly resolved      { shasum: '6e7c972fc371c645a6afb03ab14769def114fcc0',
-50 silly resolved        tarball: 'http://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz' },
-50 silly resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object] ],
-50 silly resolved     directories: {},
-50 silly resolved     _shasum: '6e7c972fc371c645a6afb03ab14769def114fcc0',
-50 silly resolved     _from: 'zlib@',
-50 silly resolved     _resolved: 'https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz' } ]
-51 info install zlib@1.0.5 into /Applications/XAMPP/xamppfiles/htdocs/feed/server
-52 info installOne zlib@1.0.5
-53 verbose node_modules/zlib unbuild
-54 verbose tar unpack /Users/purplescout/.npm/zlib/1.0.5/package.tgz
-55 silly lockFile 4da7c57c-cs-feed-server-node-modules-zlib tar:///Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules/zlib
-56 verbose lock tar:///Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules/zlib /Users/purplescout/.npm/4da7c57c-cs-feed-server-node-modules-zlib.lock
-57 silly lockFile 98cdf4d4-scout-npm-zlib-1-0-5-package-tgz tar:///Users/purplescout/.npm/zlib/1.0.5/package.tgz
-58 verbose lock tar:///Users/purplescout/.npm/zlib/1.0.5/package.tgz /Users/purplescout/.npm/98cdf4d4-scout-npm-zlib-1-0-5-package-tgz.lock
-59 silly gunzTarPerm modes [ '755', '644' ]
-60 silly gunzTarPerm extractEntry .gitignore
-61 silly gunzTarPerm extractEntry configure
-62 silly gunzTarPerm extractEntry index.js
-63 silly gunzTarPerm extractEntry LICENSE
-64 silly gunzTarPerm extractEntry Makefile
-65 silly gunzTarPerm extractEntry package.json
-66 silly gunzTarPerm extractEntry README.md
-67 silly gunzTarPerm extractEntry wscript
-68 silly gunzTarPerm extractEntry lib/zlib.js
-69 silly gunzTarPerm extractEntry src/node-zlib.cc
-70 silly gunzTarPerm extractEntry test/deflate.test.js
-71 silly gunzTarPerm extractEntry test/inflate.test.js
-72 silly lockFile 4da7c57c-cs-feed-server-node-modules-zlib tar:///Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules/zlib
-73 silly lockFile 4da7c57c-cs-feed-server-node-modules-zlib tar:///Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules/zlib
-74 silly lockFile 98cdf4d4-scout-npm-zlib-1-0-5-package-tgz tar:///Users/purplescout/.npm/zlib/1.0.5/package.tgz
-75 silly lockFile 98cdf4d4-scout-npm-zlib-1-0-5-package-tgz tar:///Users/purplescout/.npm/zlib/1.0.5/package.tgz
-76 info preinstall zlib@1.0.5
-77 verbose unsafe-perm in lifecycle false
-78 info zlib@1.0.5 Failed to exec preinstall script
-79 verbose node_modules/zlib unbuild
-80 info preuninstall zlib@1.0.5
-81 info uninstall zlib@1.0.5
-82 verbose true,/Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules,/Applications/XAMPP/xamppfiles/htdocs/feed/server/node_modules unbuild zlib@1.0.5
-83 info postuninstall zlib@1.0.5
-84 error zlib@1.0.5 preinstall: `node-waf clean || true; node-waf configure build`
-84 error Exit status 127
-85 error Failed at the zlib@1.0.5 preinstall script.
-85 error This is most likely a problem with the zlib package,
-85 error not with npm itself.
-85 error Tell the author that this fails on your system:
-85 error     node-waf clean || true; node-waf configure build
-85 error You can get their info via:
-85 error     npm owner ls zlib
-85 error There is likely additional logging output above.
-86 error System Darwin 13.3.0
-87 error command "node" "/usr/local/bin/npm" "install" "zlib" "--save"
-88 error cwd /Applications/XAMPP/xamppfiles/htdocs/feed/server
-89 error node -v v0.10.31
-90 error npm -v 1.4.23
-91 error code ELIFECYCLE
-92 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart server@1.0.0
+6 info start server@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info server@1.0.0 Failed to exec start script
+9 error server@1.0.0 start: `node server.js`
+9 error Exit status 8
+10 error Failed at the server@1.0.0 start script.
+10 error This is most likely a problem with the server package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     node server.js
+10 error You can get their info via:
+10 error     npm owner ls server
+10 error There is likely additional logging output above.
+11 error System Darwin 13.3.0
+12 error command "node" "/usr/local/bin/npm" "start"
+13 error cwd /Applications/XAMPP/xamppfiles/htdocs/website/server
+14 error node -v v0.10.31
+15 error npm -v 1.4.23
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]

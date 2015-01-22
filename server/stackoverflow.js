@@ -20,11 +20,13 @@ exports.authRoute = function(req, res) {
 			var myToken = body.slice(13, 37);
 			access_token  = myToken;
 			fetchStackExchangeData("LOLAAAA");
+			fetchProfile();
 
 		})
 	} else {
 		console.log("other stuff");
 			fetchStackExchangeData("LOLAAAA");
+			fetchProfile();
 	}
 }
 
@@ -51,7 +53,35 @@ var fetchStackExchangeData = function(endpoint) {
 	request(reqData)
 		.pipe(gunzip)
 }
+///2.2/me?order=desc&sort=reputation&site=stackoverflow
+var fetchProfile = function() {
+	var headers = {
+      'Accept-Encoding': 'gzip'
+    }
+	reqData = {
+		url: "https://api.stackexchange.com/2.2/me?order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50&access_token="+access_token+"&key="+key,
+		method:"get",
+		headers: headers
+	}
+	var zlib = require('zlib');
+    var gunzip = zlib.createGunzip();
+	var json = "";
+	gunzip.on('data', function(data){
+	    json += data.toString();
+	});
+	gunzip.on('end', function(){
+		var data = JSON.parse(json);
+		profiledata = data;
+	    console.log(profiledata);
+	});
+	request(reqData)
+		.pipe(gunzip)
+}
 var sofData = null;
+var profiledata = null;
 exports.getData = function() {
 	return sofData;
 };
+exports.getProfile = function() {
+	return profiledata;
+}

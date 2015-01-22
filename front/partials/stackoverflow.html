@@ -1,19 +1,37 @@
-stackoverflow view
 <div class="col-md-12">
-	<div class="col-md-3">
-		<h4>Profile data </h4>
+	<div class="col-md-3 text-center">
+		<div class="row">
+			<div class="col-md-12">
+			<img ng-src="{{soCtrl.profile.profile_image}}" 
+				 class="circular" />
+			</div>
+			<div class="col-md-12">
+				<h2>{{soCtrl.profile.display_name}}</h2>
+			</div>
+			<div class="col-md-12">
+				{{soCtrl.profile.badge_counts.gold}} // {{soCtrl.profile.badge_counts.silver}} // {{soCtrl.profile.badge_counts.bronze}}
+			</div>
+			<div class="col-md-12">
+				<h5>Answers</h5>
+				<h4>{{soCtrl.profile.answer_count}}</h4>
+			</div>
+			<div class="col-md-12">
+				<h5>Questions</h5>
+				<h4>{{soCtrl.profile.question_count}}</h4>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-9">
 
-		<div class="row" ng-init="order = 'title'; filter = {};">
+		<div class="row" ng-init="order = 'title'; filter = {}; reverse = false;">
 			<h5>Order</h5>
 			<button type="button"
 					class="btn btn-default"
-					ng-click="order = 'title'">
+					ng-click="order = 'title'; reverse = false">
 					Title</button>
 			<button type="button"
 					class="btn btn-default"
-					ng-click="order = 'score'">
+					ng-click="order = 'score';  reverse = true">
 					Score</button>
 			<h5>Filter</h5>
 			<button type="button"
@@ -29,8 +47,16 @@ stackoverflow view
 					ng-click="filter = {}">
 					none</button>
 			<div class="animate"
-				 ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:desc">
-				 <h4>{{d.title}} <small>{{d.score}}</small> {{d.is_accepted}}</h4>
+				 ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+				 <a ng-href="{{d.link}}"
+				 	target="_blank">
+				 <h4>
+				 	 <small>{{d.score}}</small>
+					 <span ng-if="d.is_accepted" 
+					 	   class="glyphicon glyphicon-ok" 
+					 	   aria-hidden="true"></span>
+				 		   {{d.title}} </h4>
+	 		     </a>
 				 <hr style="border-style:dotted;" />
 			</div>
 		</div>
