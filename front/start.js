@@ -40,7 +40,10 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                 resolve: {
                     repos: function(githubDataService) {
                         return githubDataService.getRepos();
-                    }
+                    },
+                    profile: function(githubDataService) {
+                        return githubDataService.getProfile();
+                    },
                 }
             })
             .state('app.linkedin', {
@@ -65,9 +68,10 @@ function stackOverflowController(items, profile) {
     console.log(this.profile);
 }
 
-function githubController(repos) {
+function githubController(repos, profile) {
     this.repos = repos.data;
-    console.log(this.repos);
+    this.profile = profile.data;
+    console.log(this.profile);
 }
 
 function stackOverflowDataService($http) {
@@ -90,7 +94,11 @@ function githubDataService($http) {
     var githubDataService = {};
 
     githubDataService.getRepos = function() {
-        return $http.get('/repos');
+        return $http.get('/github/repos');
+    }
+
+    githubDataService.getProfile = function() {
+        return $http.get('/github/profile');
     }
 
     return githubDataService;

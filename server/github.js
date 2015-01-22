@@ -2,7 +2,8 @@ var request = require('request'),
 	clientId = "1621eab2d7f37ed98b77",
 	clientSecret = "16aa520af558f808d7727917d86c80d08c000539",
 	access_token,
-	repos;
+	repos,
+	profile;
 
 exports.githubAuthRoute = function(req, res) {
 	var code = req.query.code,
@@ -24,15 +25,31 @@ exports.githubAuthRoute = function(req, res) {
 				'User-Agent': 'Personal Website'
 			}
 		}
+		var optionsProfile = {
+			params: {
+				access_token: access_token
+			},
+			url: "https://api.github.com/user?access_token="+access_token,
+			headers: {
+				'User-Agent': 'Personal Website'
+			}
+		}
 		request.get(options, function(err,httpResponse,body) {
 			repos = JSON.parse(body);
 			console.log(repos);
+		})
+		request.get(optionsProfile, function(err,httpResponse,body) {
+			profile = JSON.parse(body);
+			console.log("profile");
 		})
 	})
 }
 
 exports.getRepos = function() {
 	return repos;
+}
+exports.getProfile = function() {
+	return profile;
 }
 
 

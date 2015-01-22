@@ -31,8 +31,8 @@
 
 /* General styles */
 .circular {
-	width: auto;
-	height: auto;
+	width: 150px;
+	height: 150px;
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;

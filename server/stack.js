@@ -27,10 +27,13 @@ app.get('/stackoverflow/profile', function(req, res) {
 	res.json(sof.getProfile());
 })
 
-app.get('/repos', function(req, res) {
+app.get('/github/repos', function(req, res) {
 	res.json(github.getRepos());
 })
 
+app.get('/github/profile', function(req, res) {
+	res.json(github.getProfile());
+})
 
 console.log("up and running!");
 app.listen(3000);
