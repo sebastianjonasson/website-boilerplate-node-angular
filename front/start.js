@@ -20,6 +20,10 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                 abstract: true,
                 templateUrl: 'partials/layout.html',
             })
+            .state('app.home', {
+                templateUrl: 'partials/home.html',
+                url: '/home'
+            })
             .state('app.stackoverflow', {
                 templateUrl: 'partials/stackoverflow.html',
                 url: '/stackoverflow',

@@ -15,7 +15,7 @@ var stackOverFlowData = null;
 	//https://stackexchange.com/oauth?client_id=3997&scope=no_expiry,private_info&redirect_uri=http://localhost:3000/code
 
 	//github
-	//
+	//https://github.com/login/oauth/authorize?scope=user:email&client_id=1621eab2d7f37ed98b77
 
 app.get('/code', sof.authRoute);
 app.get('/github/auth', github.githubAuthRoute)

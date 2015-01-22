@@ -47,19 +47,32 @@
 					class="btn btn-default"
 					ng-click="filter = {}">
 					none</button>
-			<div class="animate"
-				 ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
-				 <a ng-href="{{d.link}}"
-				 	target="_blank">
-				 <h4>
-				 	 <small>{{d.score}}</small>
-					 <span ng-if="d.is_accepted" 
+			<table class="table table-hover">
+		 	<thead>
+		 		<tr>
+		 			<th>OK</th>
+		 			<th>Score</th>
+		 			<th>Title</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+
+		 		<tr class="animate" ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+		 			
+		 			<td>
+		 				<span ng-if="d.is_accepted" 
 					 	   class="glyphicon glyphicon-ok" 
 					 	   aria-hidden="true"></span>
-				 		   {{d.title}} </h4>
-	 		     </a>
-				 <hr style="border-style:dotted;" />
-			</div>
+		 			</td>
+		 			<td>{{d.score}}</td>
+		 			<td><a ng-href="{{d.link}}"
+				 	target="_blank">{{d.title}}</a></td>
+		 		</a>
+	 			</tr>
+		 	</tbody>
+		</table>
 		</div>
 		</div>
+
+		
 	</div>

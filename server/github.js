@@ -16,32 +16,41 @@ exports.githubAuthRoute = function(req, res) {
 
 	request.post({url: "https://github.com/login/oauth/access_token", form: authData}, function(err,httpResponse,body){
 		access_token = body.slice(13,53);
-		var options = {
-			params: {
-				access_token: access_token
-			},
-			url: "https://api.github.com/user/repos?type=all&access_token="+access_token,
-			headers: {
-				'User-Agent': 'Personal Website'
-			}
+		getRepos();
+		getProfile();
+	})
+}
+
+var getRepos = function() {
+	var options = {
+		params: {
+			access_token: access_token
+		},
+		url: "https://api.github.com/user/repos?type=all&access_token="+access_token,
+		headers: {
+			'User-Agent': 'Personal Website'
 		}
-		var optionsProfile = {
-			params: {
-				access_token: access_token
-			},
-			url: "https://api.github.com/user?access_token="+access_token,
-			headers: {
-				'User-Agent': 'Personal Website'
-			}
+	}
+	
+	request.get(options, function(err,httpResponse,body) {
+		repos = JSON.parse(body);
+		console.log(repos);
+	})
+}
+
+var getProfile = function() {
+	var optionsProfile = {
+		params: {
+			access_token: access_token
+		},
+		url: "https://api.github.com/user?access_token="+access_token,
+		headers: {
+			'User-Agent': 'Personal Website'
 		}
-		request.get(options, function(err,httpResponse,body) {
-			repos = JSON.parse(body);
-			console.log(repos);
-		})
-		request.get(optionsProfile, function(err,httpResponse,body) {
-			profile = JSON.parse(body);
-			console.log("profile");
-		})
+	}
+	request.get(optionsProfile, function(err,httpResponse,body) {
+		profile = JSON.parse(body);
+		console.log("profile");
 	})
 }
 
@@ -51,6 +60,3 @@ exports.getRepos = function() {
 exports.getProfile = function() {
 	return profile;
 }
-
-
-//https://github.com/login/oauth/authorize?scope=user:email&client_id=1621eab2d7f37ed98b77
