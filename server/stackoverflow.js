@@ -52,7 +52,6 @@ var fetchStackExchangeData = function(endpoint) {
 	request(reqData)
 		.pipe(gunzip)
 }
-///2.2/me?order=desc&sort=reputation&site=stackoverflow
 var fetchProfile = function() {
 	var headers = {
       'Accept-Encoding': 'gzip'
@@ -81,6 +80,10 @@ var profiledata = null;
 exports.getData = function() {
 	return sofData;
 };
-exports.getProfile = function() {
-	return profiledata;
+exports.profile = function(req, res) {
+	res.json(profiledata);
+}
+
+exports.items = function(req, res) {
+	res.json(sofData);
 }

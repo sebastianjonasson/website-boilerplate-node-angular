@@ -23,6 +23,14 @@ exports.githubAuthRoute = function(req, res) {
 	})
 }
 
+exports.profile = function(req, res) {
+	res.json(profile);
+}
+
+exports.repos = function(req, res) {
+	res.json(repos);
+}
+
 var getRepos = function() {
 	var options = {
 		params: {
@@ -52,11 +60,4 @@ var getProfile = function() {
 	request.get(optionsProfile, function(err,httpResponse,body) {
 		profile = JSON.parse(body);
 	})
-}
-
-exports.getRepos = function() {
-	return repos;
-}
-exports.getProfile = function() {
-	return profile;
 }

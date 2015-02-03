@@ -2,25 +2,17 @@ var request = require('request'),
 	express = require('express'),
 	app = express(),
 	linkedin = require('./linkedin'),
-	sof = require('./stackoverflow'),
+	stackoverflow = require('./stackoverflow'),
 	github = require('./github');
 
 
-app.get('/code', sof.authRoute);
+app.get('/code', stackoverflow.authRoute);
 app.get('/github/auth', github.githubAuthRoute);
 app.get('/linkedin/auth', linkedin.auth);
-app.get('/stackoverflow/items', function(req, res) {
-	res.json(sof.getData());
-})
-app.get('/stackoverflow/profile', function(req, res) {
-	res.json(sof.getProfile());
-})
-app.get('/github/repos', function(req, res) {
-	res.json(github.getRepos());
-})
-app.get('/github/profile', function(req, res) {
-	res.json(github.getProfile());
-})
+app.get('/stackoverflow/items', stackoverflow.items)
+app.get('/stackoverflow/profile', stackoverflow.profile)
+app.get('/github/repos', github.repos);
+app.get('/github/profile', github.profile);
 app.get('/linkedin/profile', linkedin.profile);
 
 
