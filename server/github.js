@@ -36,7 +36,6 @@ var getRepos = function() {
 	
 	request.get(options, function(err,httpResponse,body) {
 		repos = JSON.parse(body);
-		console.log(repos);
 	})
 }
 
@@ -52,7 +51,6 @@ var getProfile = function() {
 	}
 	request.get(optionsProfile, function(err,httpResponse,body) {
 		profile = JSON.parse(body);
-		console.log("profile");
 	})
 }
 

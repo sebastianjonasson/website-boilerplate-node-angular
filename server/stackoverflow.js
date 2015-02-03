@@ -25,9 +25,8 @@ exports.authRoute = function(req, res) {
 
 		})
 	} else {
-		console.log("other stuff");
-			fetchStackExchangeData("LOLAAAA");
-			fetchProfile();
+		fetchStackExchangeData("LOLAAAA");
+		fetchProfile();
 	}
 }
 
@@ -49,7 +48,6 @@ var fetchStackExchangeData = function(endpoint) {
 	gunzip.on('end', function(){
 		var data = JSON.parse(json);
 		sofData = data;
-	    console.log(sofData);
 	});
 	request(reqData)
 		.pipe(gunzip)

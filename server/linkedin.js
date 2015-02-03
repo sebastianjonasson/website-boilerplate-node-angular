@@ -11,16 +11,8 @@ var profileData;
 
 exports.auth = function(req, res) {
 	if(!auth_code) {
-		console.log("got something");
-		console.log(req.query.code);
 		auth_code = req.query.code;
-
-		var tokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
-			tokenUrl += "?grant_type=authorization_code";
-			tokenUrl += "&code="+auth_code;
-			tokenUrl += "&redirect_uri=http://localhost:3000/linkedin/auth";
-			tokenUrl += "&client_id="+api_key;
-			tokenUrl += "&client_secret="+api_secret;
+		var tokenUrl = buildTokenUrl();
 
 		request.post({url:tokenUrl}, function(err,httpResponse,body){ 
 			body = JSON.parse(body);
@@ -37,8 +29,7 @@ exports.profile = function(req, res) {
 }
 
 var getProfile = function() {
-	var url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,educations,picture-url,positions,connections)?oauth2_access_token="+access_token;
-	console.log("url: "+url);
+	var url = buildProfileEndpointUrl();
 	request(url, function(error, response, body) {
 		console.log(body);
 		parseString(body, function (err, result) {
@@ -46,4 +37,19 @@ var getProfile = function() {
 		    profileData = result;
 		});
 	});
+}
+
+var buildTokenUrl = function() {
+	var tokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
+		tokenUrl += "?grant_type=authorization_code";
+		tokenUrl += "&code="+auth_code;
+		tokenUrl += "&redirect_uri=http://localhost:3000/linkedin/auth";
+		tokenUrl += "&client_id="+api_key;
+		tokenUrl += "&client_secret="+api_secret;
+
+	return tokenUrl;
+}
+
+var buildProfileEndpointUrl = function() {
+	return "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,educations,picture-url,positions,connections)?oauth2_access_token="+access_token;
 }
