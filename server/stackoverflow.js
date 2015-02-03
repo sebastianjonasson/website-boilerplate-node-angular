@@ -1,10 +1,11 @@
 var zlib = require('zlib'),
-	request = require('request');
+	request = require('request'),
+	credentials = require('../credentials');
 
 var access_token = "",
-	key = "JxZP2dPMVoq6*GxQriseQw((",
-	clientId = "3997",
-	clientSecret = "lZ6LVwjlt3FwOsSrUu)GhQ((";
+	key = credentials.stackoverflow.api_key,
+	clientId = credentials.stackoverflow.client_id,
+	clientSecret = credentials.stackoverflow.client_secret;
 
 exports.authRoute = function(req, res) {
 	if(access_token == "") {

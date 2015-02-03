@@ -1,6 +1,8 @@
 var request = require('request'),
-	clientId = "1621eab2d7f37ed98b77",
-	clientSecret = "16aa520af558f808d7727917d86c80d08c000539",
+	credentials = require('../credentials');
+
+var clientId = credentials.github.client_id,
+	clientSecret = credentials.github.client_secret,
 	access_token,
 	repos,
 	profile;

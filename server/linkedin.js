@@ -1,12 +1,11 @@
-var api_key = "75zns7c2k18vb7",
-	api_secret = "r7pyHANbHGI7Gj2S",
-	oauth_token = "68fa3799-bacb-464b-be75-dd8f55144c65",
-	oauth_key = "ba5e0d06-2436-43f2-9ec3-7ff0907a2762",
+var request = require('request'),
+	parseString = require('xml2js').parseString,
+	credentials = require('../credentials');
+
+var api_key = credentials.linkedin.api_key,
+	api_secret = credentials.linkedin.api_secret,
 	auth_code,
 	access_token;
-
-var request = require('request'),
-	parseString = require('xml2js').parseString;
 
 var profileData;
 
