@@ -6,6 +6,9 @@
 				 class="circular" />
 			</div>
 			<div class="col-md-12">
+				<h4>{{li.profile["first-name"][0]}} {{li.profile["last-name"][0]}}</h4>
+			</div>
+			<div class="col-md-12">
 				<h5>Education</h5>
 				<h4>{{li.profile.educations[0].education[0]["field-of-study"][0]}}</h4>
 				<h4>{{li.profile.educations[0].education[0]["school-name"][0]}}</h4>
@@ -13,16 +16,24 @@
 		</div>
 	</div>
 	<div class="col-md-9">
-		<div class="row">
-			<h3 ng-repeat="skill in li.profile.skills[0].skill"><span class="label label-default">{{skill.skill[0].name[0]}}</span> </h3>
-		</div>
+		
+		<div class="col-md-12">
+			<div class="row">
+				<h3>Skills</h3>
+				<span ng-repeat="skill in li.profile.skills[0].skill" 
+					  class="label label-default"
+					  style="margin-left: 0.5em;">{{skill.skill[0].name[0]}}</span> 
+			</div>
+			<div class="row">
+				<h3>Employments</h3>
+				<div ng-repeat="pos in li.profile.positions[0].position">
+					{{pos['start-date'][0].month[0]}}/{{pos['start-date'][0].year[0]}}-{{pos['end-date'][0].month[0]}}/{{pos['end-date'][0].year[0]}}
+					{{pos.company[0].name[0]}} // {{pos.title[0]}}
 
-		<div class="row">
-			<div ng-repeat="pos in li.profile.positions[0].position">
-				{{pos['start-date'][0].month[0]}}/{{pos['start-date'][0].year[0]}}-{{pos['end-date'][0].month[0]}}/{{pos['end-date'][0].year[0]}}
-				{{pos.company[0].name[0]}} // {{pos.title[0]}}
-
+				</div>
 			</div>
 		</div>
+
+		
 	</div>
 </div>

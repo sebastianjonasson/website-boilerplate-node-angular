@@ -88,6 +88,7 @@ function githubController(repos, profile) {
 
 function linkedinController(profile) {
     this.profile = profile.data.person;
+    console.log(this.profile);
 }
 
 function stackOverflowDataService($http) {
