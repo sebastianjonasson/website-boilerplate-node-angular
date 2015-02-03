@@ -31,7 +31,6 @@ exports.profile = function(req, res) {
 var getProfile = function() {
 	var url = buildProfileEndpointUrl();
 	request(url, function(error, response, body) {
-		console.log(body);
 		parseString(body, function (err, result) {
 		    console.dir(result);
 		    profileData = result;
