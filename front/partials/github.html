@@ -20,6 +20,10 @@
 			<div class="col-md-12">
 			<div ng-repeat="repo in git.repos">
 				<h4>
+					<a ng-href="{{repo.owner.html_url}}"
+						   target="_blank">
+						   {{repo.owner.login}}</a>
+				    </a>/
 					<a ng-href="{{repo.html_url}}"
 						   target="_blank">
 						   {{repo.name}}</a>

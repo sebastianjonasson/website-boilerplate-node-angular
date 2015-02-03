@@ -3,8 +3,10 @@ angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
     .controller('mainCtrl', mainCtrl)
     .controller('stackOverflowController', stackOverflowController)
     .controller('githubController', githubController)
+    .controller('linkedinController', linkedinController)
     .factory('stackOverflowDataService', stackOverflowDataService)
     .factory('githubDataService', githubDataService)
+    .factory('linkedInDataService', linkedInDataService)
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', mainConfig])
 
 function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -52,7 +54,13 @@ function mainConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             })
             .state('app.linkedin', {
                 templateUrl: 'partials/linkedin.html',
-                url: '/linkedin'
+                url: '/linkedin',
+                controller:'linkedinController as li',
+                resolve: {
+                    profile: function(linkedInDataService) {
+                        return linkedInDataService.getProfile();
+                    }
+                }
             })
 }
 
@@ -76,6 +84,10 @@ function githubController(repos, profile) {
     this.repos = repos.data;
     this.profile = profile.data;
     console.log(this.profile);
+}
+
+function linkedinController(profile) {
+    this.profile = profile.data.person;
 }
 
 function stackOverflowDataService($http) {
@@ -106,6 +118,16 @@ function githubDataService($http) {
     }
 
     return githubDataService;
+}
+
+function linkedInDataService($http) {
+    var linkedInDataService = {};
+
+    linkedInDataService.getProfile = function() {
+        return $http.get('/linkedin/profile');
+    }
+
+    return linkedInDataService;
 }
 
 })();

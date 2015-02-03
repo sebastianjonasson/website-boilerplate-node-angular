@@ -12,6 +12,10 @@
 				{{soCtrl.profile.badge_counts.gold}} // {{soCtrl.profile.badge_counts.silver}} // {{soCtrl.profile.badge_counts.bronze}}
 			</div>
 			<div class="col-md-12">
+				<h5>Reputation</h5>
+				<h4>{{soCtrl.profile.reputation}}</h4>
+			</div>
+			<div class="col-md-12">
 				<h5>Answers</h5>
 				<h4>{{soCtrl.profile.answer_count}}</h4>
 			</div>
@@ -26,6 +30,7 @@
 		<div class="row" ng-init="order = 'title'; filter = {}; reverse = false;">
 			<div class="col-md-12">
 			<h5>Order</h5>
+			<div class="btn-group" role="group" aria-label="...">
 			<button type="button"
 					class="btn btn-default"
 					ng-click="order = 'title'; reverse = false">
@@ -34,11 +39,13 @@
 					class="btn btn-default"
 					ng-click="order = 'score';  reverse = true">
 					Score</button>
+			</div>
 			<h5>Filter</h5>
+			<div class="btn-group" role="group" aria-label="...">
 			<button type="button"
 					class="btn btn-default"
 					ng-click="filter = {is_accepted:false}">
-					Accepted Answers</button>
+					Not Accepted Answers</button>
 			<button type="button"
 					class="btn btn-default"
 					ng-click="filter = {is_accepted:true}">
@@ -46,7 +53,8 @@
 			<button type="button"
 					class="btn btn-default"
 					ng-click="filter = {}">
-					none</button>
+					None</button>
+			</div>
 			<table class="table table-hover">
 		 	<thead>
 		 		<tr>
@@ -56,8 +64,8 @@
 		 		</tr>
 		 	</thead>
 		 	<tbody>
-
-		 		<tr class="animate" ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+		 		<!-- <div class="btn-group" role="group" aria-label="..."> -->
+		 		<tr  ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
 		 			
 		 			<td>
 		 				<span ng-if="d.is_accepted" 

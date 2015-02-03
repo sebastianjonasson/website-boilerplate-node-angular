@@ -29,6 +29,13 @@
 	height: 30px;
 }
 
+.animate-repeat {
+    line-height:40px;
+    list-style:none;
+    box-sizing:border-box;
+    display: block;
+}
+
 
 
 
