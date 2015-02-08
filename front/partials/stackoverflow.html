@@ -1,5 +1,4 @@
-<div style="width:100%; background-color:#b2dfdb; margin-bottom: 21px; padding: 1em 0;">
-	<div class="container">
+<div class="container">
 		<div class="col-md-1">
 			<img ng-src="{{soCtrl.profile.profile_image}}" 
 					 class="circular-mini" />
@@ -24,39 +23,80 @@
 				<h4>{{soCtrl.profile.badge_counts.gold}} // {{soCtrl.profile.badge_counts.silver}} // {{soCtrl.profile.badge_counts.bronze}}</h4>
 			</div>
 	</div>
-</div>
 <div class="container">
 	<div class="col-md-12">
 
-		<div class="row" ng-init="order = 'title'; filter = {}; reverse = false;">
+		<div class="row" ng-init="order = 'title'; filter = {}; reverse = false; viewMode = 'grid'">
 			<div class="col-md-12">
-			<h5>Order</h5>
-			<div class="btn-group" role="group" aria-label="...">
-			<button type="button"
-					class="btn btn-default"
-					ng-click="order = 'title'; reverse = false">
-					Title</button>
-			<button type="button"
-					class="btn btn-default"
-					ng-click="order = 'score';  reverse = true">
-					Score</button>
+				<div class="row">
+					<div class="col-md-3">
+						<h5>Order</h5>
+						<div class="btn-group" role="group" aria-label="...">
+						<button type="button"
+								class="btn btn-default"
+								ng-click="order = 'title'; reverse = false">
+								Title</button>
+						<button type="button"
+								class="btn btn-default"
+								ng-click="order = 'score';  reverse = true">
+								Score</button>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<h5>Filter</h5>
+						<div class="btn-group" role="group" aria-label="...">
+						<button type="button"
+								class="btn btn-default"
+								ng-click="filter = {is_accepted:false}">
+								Not Accepted Answers</button>
+						<button type="button"
+								class="btn btn-default"
+								ng-click="filter = {is_accepted:true}">
+								Accepted Answers</button>
+						<button type="button"
+								class="btn btn-default"
+								ng-click="filter = {}">
+								None</button>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<h2>
+							<div class="icon-preview" ng-click="viewMode = 'table'">
+								<button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-action-view-list"></i></i></button>
+							</div>
+						</h2>
+						<h2>
+							<div class="icon-preview" ng-click="viewMode = 'grid'">
+								<button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-action-view-stream"></i></i></button>
+							</div>
+						</h2>
+					</div>
+				</div>
+
+			<div class="row" ng-if="viewMode == 'grid'">
+				<div class="list-group" >
+					<div ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+					
+					    <div class="list-group-item">
+					        <div class="row-action-primary">
+					            <i class=""> {{d.score}}</i>
+					        </div>
+					        <div class="row-content">
+					           <div ng-if="d.is_accepted" class="least-content">Accepted answer</div>
+					            <h4 class="list-group-item-heading">{{d.title}}</h4>
+					            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+					        </div>
+					    </div>
+					    <div class="list-group-separator"></div>
+					</div>
+					
+				</div>
 			</div>
-			<h5>Filter</h5>
-			<div class="btn-group" role="group" aria-label="...">
-			<button type="button"
-					class="btn btn-default"
-					ng-click="filter = {is_accepted:false}">
-					Not Accepted Answers</button>
-			<button type="button"
-					class="btn btn-default"
-					ng-click="filter = {is_accepted:true}">
-					Accepted Answers</button>
-			<button type="button"
-					class="btn btn-default"
-					ng-click="filter = {}">
-					None</button>
-			</div>
-			<table class="table table-striped table-hover well">
+
+
+
+			<div class="row" ng-if="viewMode == 'table'">
+			<table class="table table-striped table-hover">
 		 	<thead>
 		 		<tr>
 		 			<th>OK</th>
@@ -80,6 +120,7 @@
 	 			</tr>
 		 	</tbody>
 		</table>
+	</div>
 		</div>
 		</div>
 

@@ -1,3 +1,7 @@
+html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-scope {
+	height:100%;
+}
+
 /* Animations */
 /* lists */
 .animate.ng-enter, 
@@ -64,4 +68,16 @@
 
 .label {
 	display: inline-block;
+}
+
+#wrapper {
+	background-image:url('../img/textured_paper.png');
+	height:100%;
+}
+
+.children{	
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
 }
