@@ -74,10 +74,10 @@
 				</div>
 
 			<div class="row" ng-if="viewMode == 'grid'">
-				<div class="list-group" >
-					<div ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+				<div class="list-group">
+					<div ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse" class="well sub">
 					
-					    <div class="list-group-item">
+					    <div class="list-group-item sub">
 					        <div class="row-action-primary">
 					            <i class=""> {{d.score}}</i>
 					        </div>
@@ -87,7 +87,7 @@
 					            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
 					        </div>
 					    </div>
-					    <div class="list-group-separator"></div>
+					    <!--<div class="list-group-separator"></div>-->
 					</div>
 					
 				</div>
@@ -106,7 +106,7 @@
 		 	</thead>
 		 	<tbody>
 		 		<!-- <div class="btn-group" role="group" aria-label="..."> -->
-		 		<tr  ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
+		 		<tr  ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse" class="animate">
 		 			
 		 			<td>
 		 				<span ng-if="d.is_accepted" 

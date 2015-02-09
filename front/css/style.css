@@ -7,11 +7,11 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 .animate.ng-enter, 
 .animate.ng-leave
 { 
-    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -webkit-transition: 400ms cubic-bezier(0.470, 0.000, 0.745, 0.715) all;
+    -moz-transition: 400ms cubic-bezier(0.470, 0.000, 0.745, 0.715) all;
+    -ms-transition: 400ms cubic-bezier(0.470, 0.000, 0.745, 0.715) all;
+    -o-transition: 400ms cubic-bezier(0.470, 0.000, 0.745, 0.715) all;
+    transition: 400ms cubic-bezier(0.470, 0.000, 0.745, 0.715) all;
     position: relative;
     display: block;
     overflow: hidden;
@@ -21,9 +21,9 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 
 .animate.ng-leave.animate.ng-leave-active,
 .animate.ng-enter {
-	opacity: 0;
-	width: 0px;
-	height: 0px;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
 }
 
 .animate.ng-enter.ng-enter-active, 
@@ -33,13 +33,43 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 	height: 30px;
 }
 
-.animate-repeat {
-    line-height:40px;
-    list-style:none;
-    box-sizing:border-box;
+
+/* **** */
+
+.sub.ng-enter, 
+.sub.ng-leave { 
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
     display: block;
+} 
+ 
+.sub.ng-leave.sub.ng-leave-active,
+.sub.ng-enter  {
+    -webkit-transform: skewX(45deg) skewY(30deg);
+    -moz-transform: skewX(45deg) skewY(30deg);
+    -ms-transform: skewX(45deg) skewY(30deg);
+    -o-transform: skewX(45deg) skewY(30deg);
+    transform: skewX(45deg) skewY(30deg);
+    opacity: 0;
+    height: 0px;
+}        
+ 
+.sub.ng-enter.ng-enter-active, 
+.sub.ng-leave {
+    -webkit-transform: skewX(0deg) skewY(0deg);
+    -moz-transform: skewX(0deg) skewY(0deg);
+    -ms-transform: skewX(0deg) skewY(0deg);
+    -o-transform: skewX(0deg) skewY(0deg);
+    transform: skewX(0deg) skewY(0deg);
+    opacity: 1;
+    height: 30px;
 }
 
+/* **** */
 
 
 
@@ -81,3 +111,9 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 	transform: translateY(-50%);
 	text-align: center;
 }
+
+.panel-github-header {
+	background-image:url('../img/hithub_header.jpg');
+	height:100px;
+	background-size: auto 100px;
+}	

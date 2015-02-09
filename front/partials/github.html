@@ -15,26 +15,48 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-9">
-		<div class="row">
-			<div class="col-md-12">
-			<div ng-repeat="repo in git.repos">
-				<h4>
-					<a ng-href="{{repo.owner.html_url}}"
-						   target="_blank">
-						   {{repo.owner.login}}</a>
-				    </a>/
-					<a ng-href="{{repo.html_url}}"
-						   target="_blank">
-						   {{repo.name}}</a>
-						   <small>{{repo.language}}</small></h4>
-				    </a>
-				    <p>
-				    	{{repo.description}}
-				    </p>
-				 <hr style="border-style:dotted;" />
-			</div>
+</div>
+<div class="col-md-12">
+	<div class="col-md-6">
+		<br />
+		<div class="panel" ng-repeat="repo in git.repos">
+		    <div class="panel-heading panel-github-header"></div>
+		    <div class="panel-body">
+		        <h4>
+			<a ng-href="{{repo.owner.html_url}}"
+				   target="_blank">
+				   {{repo.owner.login}}</a>
+		    </a>/
+			<a ng-href="{{repo.html_url}}"
+				   target="_blank">
+				   {{repo.name}}</a>
+				   <small>{{repo.language}}</small></h4>
+		    </a>
+		    <p>
+		    	{{repo.description}}
+		    </p>
+		    </div>
 		</div>
+	</div>
+	<div class="col-md-6">
+		<br />
+		<div class="panel" ng-repeat="repo in git.repos">
+		    <div class="panel-heading panel-github-header"></div>
+		    <div class="panel-body">
+		        <h4>
+			<a ng-href="{{repo.owner.html_url}}"
+				   target="_blank">
+				   {{repo.owner.login}}</a>
+		    </a>/
+			<a ng-href="{{repo.html_url}}"
+				   target="_blank">
+				   {{repo.name}}</a>
+				   <small>{{repo.language}}</small></h4>
+		    </a>
+		    <p>
+		    	{{repo.description}}
+		    </p>
+		    </div>
 		</div>
 	</div>
 </div>
