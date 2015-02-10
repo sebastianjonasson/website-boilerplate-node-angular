@@ -74,10 +74,11 @@ function mainCtrl($scope, ngProgress, $rootScope) {
     })
 }
 
-function stackOverflowController(items, profile) {
+function stackOverflowController(items, profile, $sce) {
     this.items = items.data.items;
     this.profile = profile.data.items[0];
     console.log(this.profile);
+    this.getHtml = $sce.trustAsHtml;
 }
 
 function githubController(repos, profile) {
