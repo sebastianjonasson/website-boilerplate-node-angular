@@ -3,3 +3,4 @@ server/npm-debug.log
 bower_components
 credentials.js
 DataFetchUrls.js
+npm-debug.log
