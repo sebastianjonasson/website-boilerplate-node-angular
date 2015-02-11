@@ -75,10 +75,24 @@ function mainCtrl($scope, ngProgress, $rootScope) {
 }
 
 function stackOverflowController(items, profile, $sce) {
-    this.items = items.data.items;
+    var items = items.data.items;
+    this.items = angular.copy(items);
     this.profile = profile.data.items[0];
     console.log(this.profile);
     this.getHtml = $sce.trustAsHtml;
+
+    this.filterList = function(search) {
+        this.items = angular.copy(items);
+        var filteredItems=[];
+
+        angular.forEach(angular.copy(this.items), function(item) {
+            if(item.title.indexOf(search) > -1 || item.body.indexOf(search) > -1) {
+                filteredItems.push(item);
+            };
+        });
+
+        this.items = filteredItems;
+    }
 }
 
 function githubController(repos, profile) {
