@@ -93,6 +93,10 @@ function stackOverflowController(items, profile, $sce) {
 
         this.items = filteredItems;
     }
+
+    this.getDate = function(date) {
+        return new Date(date).toString();
+    }
 }
 
 function githubController(repos, profile) {

@@ -15,8 +15,6 @@ app.get('/github/repos', github.repos);
 app.get('/github/profile', github.profile);
 app.get('/linkedin/profile', linkedin.profile);
 
-
-
 console.log("up and running!");
 app.listen(3000);
 
