@@ -1,6 +1,6 @@
 var request = require('request'),
 	parseString = require('xml2js').parseString,
-	credentials = require('../credentials');
+	credentials = require('../../credentials');
 
 var api_key = credentials.linkedin.api_key,
 	api_secret = credentials.linkedin.api_secret,

@@ -1,6 +1,6 @@
 var zlib = require('zlib'),
 	request = require('request'),
-	credentials = require('../credentials');
+	credentials = require('../../credentials');
 
 var access_token = "",
 	key = credentials.stackoverflow.api_key,

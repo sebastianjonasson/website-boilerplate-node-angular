@@ -1,5 +1,5 @@
 var request = require('request'),
-	credentials = require('../credentials');
+	credentials = require('../../credentials');
 
 var clientId = credentials.github.client_id,
 	clientSecret = credentials.github.client_secret,

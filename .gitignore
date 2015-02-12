@@ -1,6 +1,7 @@
-server/node_modules
-server/npm-debug.log
+node_modules
+src/server/npm-debug.log
 bower_components
 credentials.js
 DataFetchUrls.js
 npm-debug.log
+public
