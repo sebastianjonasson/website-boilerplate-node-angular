@@ -47,12 +47,27 @@ grunt.initConfig({
           }
         ]
       }
+    },
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'src/front/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'public/css',
+          ext: '.min.css'
+        },
+        {
+          'public/css/release.min.css': ['src/front/css/*.css']
+        }]
+      }
     }
 });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-copy-to');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('build', ['concat', 'copyto']);
+  grunt.registerTask('build', ['concat', 'copyto', 'cssmin']);
 
 };
