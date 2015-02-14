@@ -1,12 +1,21 @@
+/*
+ *	Includes
+ */
 var request = require('request'),
 	credentials = require('../../credentials');
 
+/*
+ *	Fields
+ */
 var clientId = credentials.github.client_id,
 	clientSecret = credentials.github.client_secret,
 	access_token,
 	repos,
 	profile;
 
+/*
+ *	Interface
+ */
 exports.githubAuthRoute = function(req, res) {
 	var code = req.query.code,
 		authData = {
@@ -30,6 +39,10 @@ exports.profile = function(req, res) {
 exports.repos = function(req, res) {
 	res.json(repos);
 }
+
+/*
+ *	Functions
+ */
 
 var getRepos = function() {
 	var options = {

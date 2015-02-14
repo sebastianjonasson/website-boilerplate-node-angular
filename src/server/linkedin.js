@@ -1,7 +1,13 @@
+/* 
+ *	Includes
+ */
 var request = require('request'),
 	parseString = require('xml2js').parseString,
 	credentials = require('../../credentials');
 
+/*
+ *	Fields
+ */
 var api_key = credentials.linkedin.api_key,
 	api_secret = credentials.linkedin.api_secret,
 	auth_code,
@@ -9,6 +15,9 @@ var api_key = credentials.linkedin.api_key,
 
 var profileData;
 
+/*
+ *	Interface
+ */
 exports.auth = function(req, res) {
 	if(!auth_code) {
 		auth_code = req.query.code;
@@ -28,6 +37,10 @@ exports.profile = function(req, res) {
 	res.json(profileData);
 }
 
+
+/*
+ *	Functions
+ */
 var getProfile = function() {
 	var url = buildProfileEndpointUrl();
 	request(url, function(error, response, body) {

@@ -1,12 +1,23 @@
+/*
+ *	Includes
+ */
 var zlib = require('zlib'),
 	request = require('request'),
 	credentials = require('../../credentials');
 
+/*
+ *	Fields
+ */
 var access_token = "",
 	key = credentials.stackoverflow.api_key,
 	clientId = credentials.stackoverflow.client_id,
-	clientSecret = credentials.stackoverflow.client_secret;
+	clientSecret = credentials.stackoverflow.client_secret,
+	sofData,
+	profiledata;
 
+/*
+ *	Interface
+ */
 exports.authRoute = function(req, res) {
 	if(access_token == "") {
 		var token = req.query.code;
@@ -20,63 +31,16 @@ exports.authRoute = function(req, res) {
 		request.post({url:tokenUrl, form: formData}, function(err,httpResponse,body){ 
 			var myToken = body.slice(13, 37);
 			access_token  = myToken;
-			fetchStackExchangeData("LOLAAAA");
+			fetchStackExchangeData();
 			fetchProfile();
 
 		})
 	} else {
-		fetchStackExchangeData("LOLAAAA");
+		fetchStackExchangeData();
 		fetchProfile();
 	}
 }
 
-var fetchStackExchangeData = function(endpoint) {
-	var headers = {
-      'Accept-Encoding': 'gzip'
-    }
-	reqData = {
-		url: "https://api.stackexchange.com/2.2/me/answers?order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb&access_token="+access_token+"&key="+key,
-		method:"get",
-		headers: headers
-	}
-	var zlib = require('zlib');
-    var gunzip = zlib.createGunzip();
-	var json = "";
-	gunzip.on('data', function(data){
-	    json += data.toString();
-	});
-	gunzip.on('end', function(){
-		var data = JSON.parse(json);
-		sofData = data;
-	});
-	request(reqData)
-		.pipe(gunzip)
-}
-var fetchProfile = function() {
-	var headers = {
-      'Accept-Encoding': 'gzip'
-    }
-	reqData = {
-		url: "https://api.stackexchange.com/2.2/me?order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50&access_token="+access_token+"&key="+key,
-		method:"get",
-		headers: headers
-	}
-	var zlib = require('zlib');
-    var gunzip = zlib.createGunzip();
-	var json = "";
-	gunzip.on('data', function(data){
-	    json += data.toString();
-	});
-	gunzip.on('end', function(){
-		var data = JSON.parse(json);
-		profiledata = data;
-	    console.log(profiledata);
-	});
-	request(reqData)
-		.pipe(gunzip)
-}
-var sofData = null;
-var profiledata = null;
 exports.getData = function() {
 	return sofData;
 };
@@ -86,4 +50,52 @@ exports.profile = function(req, res) {
 
 exports.items = function(req, res) {
 	res.json(sofData);
+}
+
+/*
+ *	Functions
+ */
+var fetchStackExchangeData = function() {
+	var endpoint = "/me/answers?order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb";
+
+	stackexchangeAPIRequest(endpoint, "get", function(data) {
+		sofData = data;
+	});
+}
+var fetchProfile = function() {
+	var endpoint = "/me?order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50";
+
+	stackexchangeAPIRequest(endpoint, "get", function(data) {
+		profiledata = data;
+	});
+}
+
+var stackexchangeAPIRequest = function(endpoint, method, cb) {
+	var stackexchangeBaseUrl = "https://api.stackexchange.com/2.2",
+		accessTokenAndKey = "&access_token="+access_token+"&key="+key,
+		requestUrl = stackexchangeBaseUrl + endpoint + accessTokenAndKey,
+		gunzip = zlib.createGunzip(),
+		json = "",
+		headers = {
+		  'Accept-Encoding': 'gzip'
+		};
+
+	reqData = {
+		url: requestUrl,
+		method:method,
+		headers: headers
+	};
+
+	gunzip.on('data', function(data){
+	    json += data.toString();
+	});
+
+	gunzip.on('end', function(){
+		var data = JSON.parse(json);
+		cb(data);
+	    console.log(profiledata);
+	});
+
+	request(reqData)
+		.pipe(gunzip)
 }
