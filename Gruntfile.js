@@ -61,13 +61,21 @@ grunt.initConfig({
           'public/css/release.min.css': ['src/front/css/*.css']
         }]
       }
+    },
+    uglify: {
+      my_target: {
+        files: {
+          'public/js/website.min.js': ['public/js/website.js']
+        }
+      }
     }
 });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-copy-to');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('build', ['concat', 'copyto', 'cssmin']);
+  grunt.registerTask('build', ['concat', 'copyto', 'cssmin', 'uglify']);
 
 };

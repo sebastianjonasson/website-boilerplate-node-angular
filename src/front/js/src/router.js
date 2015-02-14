@@ -1,4 +1,19 @@
 function router($stateProvider, $urlRouterProvider, $locationProvider) {
+    var resolveStackoverflowItems = function(stackOverflowDataService) {
+            return stackOverflowDataService.getData();
+        },
+        resolveStackoverflowProfile = function(stackOverflowDataService) {
+            return stackOverflowDataService.getProfile();
+        },
+        resolveGithubRepos = function(githubDataService) {
+            return githubDataService.getRepos();
+        },
+        resolveGithubProfile = function(githubDataService) {
+            return githubDataService.getProfile();
+        },
+        resolveLinkedinProfile = function(linkedInDataService) {
+            return linkedInDataService.getProfile();
+        };
 
     //$locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/home');
@@ -20,12 +35,8 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/stackoverflow',
             controller: 'stackOverflowController as soCtrl',
             resolve: {
-                items: function(stackOverflowDataService) {
-                    return stackOverflowDataService.getData();
-                },
-                profile: function(stackOverflowDataService) {
-                    return stackOverflowDataService.getProfile();
-                }
+                items: ['stackOverflowDataService',resolveStackoverflowItems],
+                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
             }
         })
         .state('app.github', {
@@ -33,12 +44,8 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/github',
             controller: 'githubController as git',
             resolve: {
-                repos: function(githubDataService) {
-                    return githubDataService.getRepos();
-                },
-                profile: function(githubDataService) {
-                    return githubDataService.getProfile();
-                },
+                repos: ['githubDataService', resolveGithubRepos],
+                profile: ['githubDataService',resolveGithubProfile],
             }
         })
         .state('app.linkedin', {
@@ -46,9 +53,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/linkedin',
             controller:'linkedinController as li',
             resolve: {
-                profile: function(linkedInDataService) {
-                    return linkedInDataService.getProfile();
-                }
+                profile: ['linkedInDataService',resolveLinkedinProfile]
             }
         })
 }

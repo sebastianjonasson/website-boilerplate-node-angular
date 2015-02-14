@@ -1,11 +1,11 @@
 angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
-    .controller('mainCtrl', mainCtrl)
-    .controller('stackOverflowController', stackOverflowController)
-    .controller('githubController', githubController)
-    .controller('linkedinController', linkedinController)
-    .factory('stackOverflowDataService', stackOverflowDataService)
-    .factory('githubDataService', githubDataService)
-    .factory('linkedInDataService', linkedInDataService)
+    .controller('mainCtrl', ['$scope','ngProgress','$rootScope', mainCtrl])
+    .controller('stackOverflowController', ['items', 'profile', '$sce', stackOverflowController])
+    .controller('githubController', ['repos', 'profile', githubController])
+    .controller('linkedinController', ['profile', linkedinController])
+    .factory('stackOverflowDataService', ['$http', stackOverflowDataService])
+    .factory('githubDataService', ['$http',githubDataService])
+    .factory('linkedInDataService', ['$http',linkedInDataService])
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', router])
 
 
