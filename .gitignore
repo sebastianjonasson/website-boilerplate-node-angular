@@ -5,4 +5,5 @@ credentials.js
 DataFetchUrls.js
 npm-debug.log
 public
+./.DS_Store
 .DS_Store

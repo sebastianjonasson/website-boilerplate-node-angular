@@ -68,13 +68,29 @@ grunt.initConfig({
           'public/js/website.min.js': ['public/js/website.js']
         }
       }
-    }
+    },
+    watch: {
+      gruntfile: {
+        files: 'Gruntfile.js',
+        tasks: ['jshint:gruntfile'],
+      },
+      src: {
+        files: ['lib/*.js', 'css/**/*.scss', '!lib/dontwatch.js'],
+        tasks: ['default'],
+      },
+      test: {
+        files: '<%= jshint.test.src %>',
+        tasks: ['jshint:test', 'qunit'],
+      },
+    },
 });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-copy-to');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
 
   grunt.registerTask('build', ['concat', 'copyto', 'cssmin', 'uglify']);
 
