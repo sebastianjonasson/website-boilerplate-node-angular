@@ -1,21 +1,51 @@
  <!-- Sidebar -->
-<div id="sidebar-wrapper"> 
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <a href="#/home">
-                Home
-            </a>
-        </li>
-        <li>
-            <a href="#/stackoverflow">Stack Overflow</a>
-        </li>
-        <li>
-            <a href="#/github">Github</a>
-        </li>
-        <li>
-            <a href="#/linkedin">Linkedin</a>
-        </li>
-    </ul>
+<div id="sidebar-wrapper" class="shadow-z-5">
+    <div class="container-fluid shadow-z-1" style="padding: 1em; background: lightblue; margin-bottom:2em;">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <img ng-src="{{appCtrl.profile['picture-url'][0]}}" 
+                          class="circular-mini" />
+                <h6>Sebastian Jonasson</h6>
+                <h6>{{appCtrl.profile.location[0]['name'][0]}}</h6>
+            </div>
+        </div>
+    </div>
+<div class="list-group">
+    <a href="#/stackoverflow">
+    <div class="list-group-item">
+        <div class="row-picture">
+            <img class="circle" src="/client/img/so-icon.png" alt="icon">
+        </div>
+        <div class="row-content">
+            <h4 class="list-group-item-heading">Stack Overflow</h4>
+        </div>
+    </div>
+    </a>
+    <a href="#/github">
+    <div class="list-group-separator"></div>
+    <div class="list-group-item">
+        <div class="row-picture">
+            <img class="circle" src="/client/img/github_icon.png" alt="icon">
+        </div>
+        <div class="row-content">
+            <h4 class="list-group-item-heading">Github</h4>
+        </div>
+    </div>
+    </a>
+    <a href="#/linkedin">
+    <div class="list-group-separator"></div>
+    <div class="list-group-item">
+        <div class="row-picture">
+            <img class="circle" src="/client/img/linkedin_icon.png" alt="icon">
+        </div>
+        <div class="row-content">
+            <h4 class="list-group-item-heading">LinkedIn</h4>
+        </div>
+    </div>
+    </a>
+    <div class="list-group-separator"></div>
+</div>
+
 </div>
 <!-- /#sidebar-wrapper -->
 <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">

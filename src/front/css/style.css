@@ -125,8 +125,12 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 }
 
 #wrapper {
-	background-image:url('../img/textured_paper.png');
+	/*background-image:url('/public/img/textured_paper.png');*/
 	height:100%;
+}
+
+body {
+    background-image:url('/public/img/textured_paper.png');
 }
 
 .children{	
@@ -137,7 +141,11 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 }
 
 .panel-github-header {
-	background-image:url('../img/hithub_header.jpg');
+	background-image:url('/public/img/hithub_header.jpg');
 	height:100px;
 	background-size: auto 100px;
-}	
+}
+
+#sidebar-wrapper {
+    background-color: #EEE;
+}

@@ -1,5 +1,5 @@
 angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
-    .controller('mainCtrl', ['$scope','ngProgress','$rootScope', mainCtrl])
+    .controller('appController', ['profile', appController])
     .controller('stackOverflowController', ['items', 'profile', '$sce', stackOverflowController])
     .controller('githubController', ['repos', 'profile', githubController])
     .controller('linkedinController', ['profile', linkedinController])
@@ -9,7 +9,7 @@ angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', router])
 
 
-function mainCtrl($scope, ngProgress, $rootScope) {
+/*function mainCtrl($scope, ngProgress, $rootScope) {
 
     $rootScope.$on('$stateChangeStart', function() {
         ngProgress.start();
@@ -17,4 +17,4 @@ function mainCtrl($scope, ngProgress, $rootScope) {
     $rootScope.$on('$stateChangeSuccess', function() {
         ngProgress.complete();
     })
-}
+}*/

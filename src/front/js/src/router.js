@@ -25,6 +25,10 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('app', {
             abstract: true,
             templateUrl: 'partials/layout.html',
+            controller: 'appController as appCtrl',
+            resolve: {
+                profile: ['linkedInDataService',resolveLinkedinProfile]
+            }
         })
         .state('app.home', {
             templateUrl: 'partials/home.html',
@@ -51,9 +55,6 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('app.linkedin', {
             templateUrl: 'partials/linkedin.html',
             url: '/linkedin',
-            controller:'linkedinController as li',
-            resolve: {
-                profile: ['linkedInDataService',resolveLinkedinProfile]
-            }
+            controller:'linkedinController as li'
         })
 }
