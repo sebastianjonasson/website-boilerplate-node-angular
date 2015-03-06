@@ -1,4 +1,4 @@
-angular.module('website', ['ui.router', 'ngProgress', 'ngAnimate'])
+angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial'])
     .controller('appController', ['profile', appController])
     .controller('stackOverflowController', ['items', 'profile', '$sce', stackOverflowController])
     .controller('githubController', ['repos', 'profile', githubController])

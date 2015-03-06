@@ -55,7 +55,7 @@ var buildTokenUrl = function() {
 	var tokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
 		tokenUrl += "?grant_type=authorization_code";
 		tokenUrl += "&code="+auth_code;
-		tokenUrl += "&redirect_uri=http://localhost:3000/linkedin/auth";
+		tokenUrl += "&redirect_uri="+credentials.domain+"/linkedin/auth";
 		tokenUrl += "&client_id="+api_key;
 		tokenUrl += "&client_secret="+api_secret;
 

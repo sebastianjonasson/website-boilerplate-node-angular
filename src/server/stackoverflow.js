@@ -26,7 +26,7 @@ exports.authRoute = function(req, res) {
 			client_id: clientId,
 			client_secret: clientSecret,
 			code: token,
-			redirect_uri: "http://localhost:3000/code",
+			redirect_uri: credentials.domain.url+"/code",
 		}
 		request.post({url:tokenUrl, form: formData}, function(err,httpResponse,body){ 
 			var myToken = body.slice(13, 37);

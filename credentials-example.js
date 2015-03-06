@@ -1,4 +1,11 @@
 /*
+ *	Website URL
+ */
+exports.domain = {
+	url: "" // e.g. http://localhost:3000 or https://example.com
+}
+
+/*
  *	Stackoverflow
  */
 exports.stackoverflow = {
