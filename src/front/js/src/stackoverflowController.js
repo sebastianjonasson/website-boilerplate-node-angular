@@ -1,4 +1,4 @@
-function stackOverflowController(items, profile, $sce) {
+function stackOverflowController(items, profile, $sce, $mdSidenav, $mdMedia) {
     var items = items.data.items;
 
     this.items = angular.copy(items);
@@ -22,4 +22,18 @@ function stackOverflowController(items, profile, $sce) {
     }
     
     this.getHtml = $sce.trustAsHtml;
+
+    this.close = function() {
+        $mdSidenav('asd').close()
+          .then(function(){
+            console.log("close LEFT is done");
+          });
+    };
+
+    this.open = function() {
+        $mdSidenav('asd').toggle();
+    }
+
+    this.$mdMedia = $mdMedia;
+    
 }

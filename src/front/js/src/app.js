@@ -1,6 +1,6 @@
 angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial'])
     .controller('appController', ['profile', appController])
-    .controller('stackOverflowController', ['items', 'profile', '$sce', stackOverflowController])
+    .controller('stackOverflowController', ['items', 'profile', '$sce','$mdSidenav','$mdMedia', stackOverflowController])
     .controller('githubController', ['repos', 'profile', githubController])
     .controller('linkedinController', ['profile', linkedinController])
     .factory('stackOverflowDataService', ['$http', stackOverflowDataService])

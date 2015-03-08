@@ -1,3 +1,10 @@
 html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-scope {
 	height:100%;
 }
+
+.circular {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 70px;
+  margin: 16px; 
+}
