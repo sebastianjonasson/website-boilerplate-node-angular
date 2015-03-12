@@ -1,11 +1,11 @@
 <div ng-init="showOptions = false; order = 'title'; filter = {}; reverse = false; search='';" style="height:100%;"> 
 
 
-<div layout="row" style="background-color:#03A9F4;">
+<div layout="row" style="background-color:#03A9F4; height:100%;">
 
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" 
 				md-component-id="asd" 
-				md-is-locked-open="soCtrl.$mdMedia('gt-md')">
+				md-is-locked-open="soCtrl.$mdMedia('gt-md') && !soCtrl.selectedItem">
 	  <md-toolbar class="md-theme-indigo md-whiteframe-z2">
 	  	<img ng-src="{{soCtrl.profile.profile_image}}" 
 					class="circular md-whiteframe-z2" />
@@ -27,57 +27,61 @@
 		</div>
 
 	  </md-toolbar>
-	  <md-content>
-	    <md-list>
-	      <md-item >
+	  <md-content ng-init="showFilters = false">
+	  <md-input-container>
+	  	<md-list style="padding-left: 2em;">
+	      <md-item>
 	        <md-item-content>
 	          <div class="md-tile-left">
-	              [icon]
+	              <i class="fa fa-cog"></i>
 	          </div>
 	          <div class="md-tile-content">
-	            <h4>stackoverflow profile</h4>
+	            <h4 ng-click="showFilters = !showFilters">Filters</h4>
 	          </div>
 	        </md-item-content>
-	      </md-item>
-	      <md-item >
 	        <md-item-content>
 	          <div class="md-tile-left">
-	              [icon]
+	              <i class="fa fa-stack-overflow"></i>
 	          </div>
 	          <div class="md-tile-content">
-	            <h4>Filkters</h4>
+	            <h4>Stackoverflow Profile</h4>
 	          </div>
 	        </md-item-content>
 	      </md-item>
 	    </md-list>
+	    <div ng-if="showFilters">
+	    	<md-divider></md-divider>
+	      <label>Search</label>
+	      <input ng-model="search"
+				 ng-change="soCtrl.filterList(search)">
+	    </md-input-container>
+	  <h4>Filter</h4>
+	  <md-radio-group ng-model="filter.is_accepted">
+      	<md-radio-button value="true">Accepted answers</md-radio-button>
+      	<md-radio-button value="false"> Not accepted answers</md-radio-button>
+      	<md-radio-button value="" selected>None</md-radio-button>
+      </md-radio-group>
+      <h4>Order by</h4>
+      <md-radio-group ng-model="order">
+      	<md-radio-button value="title" ng-click="reverse = false">Title</md-radio-button>
+      	<md-radio-button value="score" ng-click="reverse = true">Score</md-radio-button>
+      </md-radio-group>
+
+      <md-select ng-model="search" placeholder="Select a state">
+		  <md-option value="asd">asd</md-option>
+		</md-select>
+  </div>
 	  </md-content>
 	
-			<md-input-container>
-	          <label>Search</label>
-	          <input ng-model="search"
-					 ng-change="soCtrl.filterList(search)">
-	        </md-input-container>
-	        <h3>Filter</h3>
-	        <md-button class="md-raised md-primary"
-	        		   ng-click="filter = {is_accepted:false}">Not Accepted answers</md-button>
-	        <md-button class="md-raised md-primary" 
-	        		   ng-click="filter = {is_accepted:true}">
-					   Accepted Answers</md-button>
-	        <md-button class="md-raised md-primary"
-	    			   ng-click="filter = {}">
-					   None</md-button>
-
-			<h3>Order</h3>
-			<md-button class="md-raised md-primary" ng-click="order = 'title'; reverse = false">Title</md-button>
-			<md-button class="md-raised md-primary" ng-click="order = 'score';  reverse = true">Score</md-button>
+		
 	</md-sidenav>
 
 
-  <div flex>
-       <md-content class="md-padding" style="height: 100%;padding: 24px;">
+  <div flex style="height:100%;">
+     <md-content ng-if="!soCtrl.selectedItem" class="md-padding" style="height:inherit;padding: 24px;">
         <md-list>
           <md-item ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
-            <md-item-content>
+            <md-item-content ng-click="soCtrl.viewEntry(d);">
               <div class="md-tile-left">
               	<i class=""> {{d.score}}</i>
               </div>
@@ -85,16 +89,26 @@
                 <h3><a ng-href="{{d.link}}"
 					   target="_blank">{{d.title}}</a></h3>
                 <h4 ng-if="d.is_accepted">Accepted answer</h4>
-                <p>
-                  Lorem ipsum dolor sit amet
-                </p>
+                
               </div>
             </md-item-content>
             <md-divider ng-if="!$last"></md-divider>
+
           </md-item>
           
+          
         </md-list>
+        
       </md-content>
+      <md-content class="md-padding" style="height:inherit;padding: 24px;">
+      		<md-button ng-if="soCtrl.selectedItem" ng-click="soCtrl.goBack()">Back</md-button>
+      		<h2>{{soCtrl.selectedItem.title}}</h2>
+      		<h4>{{soCtrl.selectedItem.creation_date}}</h4>
+
+		  <p ng-if="soCtrl.selectedItem" ng-bind-html="soCtrl.getHtml(soCtrl.selectedItem.body)"></p>
+		  <md-button ng-if="soCtrl.selectedItem" ng-click="soCtrl.goBack()">Back</md-button>
+		</md-content>
+
     </div>
   </div>
 

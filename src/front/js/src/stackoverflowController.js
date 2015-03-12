@@ -1,6 +1,8 @@
 function stackOverflowController(items, profile, $sce, $mdSidenav, $mdMedia) {
     var items = items.data.items;
 
+    this.selectedItem;
+    
     this.items = angular.copy(items);
     this.profile = profile.data.items[0];
 
@@ -35,5 +37,15 @@ function stackOverflowController(items, profile, $sce, $mdSidenav, $mdMedia) {
     }
 
     this.$mdMedia = $mdMedia;
+
+    this.viewEntry = function(entry) {
+        this.selectedItem = entry;
+        $mdSidenav('asd').close();
+    }
+
+    this.goBack = function() {
+        this.selectedItem = undefined;
+        $mdSidenav('asd').toggle();
+    }
     
 }
