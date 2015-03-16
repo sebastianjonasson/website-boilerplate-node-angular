@@ -1,27 +1,28 @@
 <div ng-init="showOptions = false; order = 'title'; filter = {}; reverse = false; search='';" style="height:100%;"> 
 
 
-<div layout="row" style="background-color:#03A9F4; height:100%;">
+<div layout="row" style="background-color:lightgray; height:100%;">
 
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" 
 				md-component-id="asd" 
 				md-is-locked-open="soCtrl.$mdMedia('gt-md') && !soCtrl.selectedItem">
 	  <md-toolbar class="md-theme-indigo md-whiteframe-z2">
+	  	<div layout="column" layout-align="center center" style="margin-bottom:1em;">
 	  	<img ng-src="{{soCtrl.profile.profile_image}}" 
 					class="circular md-whiteframe-z2" />
-					{{soCtrl.profile.display_name}}
-
-		<div layout="row" layout-align="center center" style="padding: 1em auto;">
+					{{soCtrl.profile.display_name}}</div>
+		<md-divider></md-divider>
+		<div layout="row" layout-align="center center" style="padding: 1em; font-size:14px;">
 			<div flex>
-				<small>Reputation</small><br />
+				<span>Reputation</span><br />
 				<strong>{{soCtrl.profile.reputation}}</strong>
 			</div>
 			<div flex>
-				<small>Answers</small><br />
+				<span>Answers</span><br />
 				<strong>{{soCtrl.profile.answer_count}}</strong>
 			</div>
 			<div flex>
-				<small>Questions</small><br />
+				<span>Questions</span><br />
 					<strong>{{soCtrl.profile.question_count}}</strong>
 			</div>
 		</div>
@@ -29,6 +30,7 @@
 	  </md-toolbar>
 	  <md-content ng-init="showFilters = false">
 	  <md-input-container>
+
 	  	<md-list style="padding-left: 2em;">
 	      <md-item>
 	        <md-item-content>
@@ -77,8 +79,9 @@
 	</md-sidenav>
 
 
-  <div flex style="height:100%;">
-     <md-content ng-if="!soCtrl.selectedItem" class="md-padding" style="height:inherit;padding: 24px;">
+  <div flex style="height:100%; margin: 24px;" ng-if="!soCtrl.selectedItem">
+     <md-content  class="md-padding" style="height:inherit;padding: 24px;">
+     <md-subheader class="md-primary" style="color:#000;">Unread Messages</md-subheader>
         <md-list>
           <md-item ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
             <md-item-content ng-click="soCtrl.viewEntry(d);">
@@ -91,6 +94,10 @@
                 <h4 ng-if="d.is_accepted">Accepted answer</h4>
                 
               </div>
+              <md-button ng-href="{{d.link}}">
+		            <i class="fa fa-external-link" style="color:rgb(119, 119, 119);"></i>
+            </md-button>
+              
             </md-item-content>
             <md-divider ng-if="!$last"></md-divider>
 
@@ -100,7 +107,7 @@
         </md-list>
         
       </md-content>
-      <md-content class="md-padding" style="height:inherit;padding: 24px;">
+      <md-content class="md-padding md-whiteframe-z1" style="height:inherit;padding: 24px;">
       		<md-button ng-if="soCtrl.selectedItem" ng-click="soCtrl.goBack()">Back</md-button>
       		<h2>{{soCtrl.selectedItem.title}}</h2>
       		<h4>{{soCtrl.selectedItem.creation_date}}</h4>
@@ -111,135 +118,4 @@
 
     </div>
   </div>
-
-<!--
-
-<div class="container" style="margin-top:2em;">		
-	<div class="col-md-12">		
-	<div class="row">
-		<div class="col-md-3 fade">
-			<div class="panel panel-default">
-				<div class="panel-body text-center">
-					<img ng-src="{{soCtrl.profile.profile_image}}" 
-					class="circular" />
-
-					<h2>{{soCtrl.profile.display_name}}</h2>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 fade">
-			<div class="panel panel-primary">
-				<div class="panel-heading text-center"><h1 style="font-size: 70px;"><i class="mdi-action-stars"></i></h1></div>
-				<div class="panel-body text-center">
-					<h5>Reputation</h5> 
-					<h3>{{soCtrl.profile.reputation}}</h3>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="panel panel-success">
-				<div class="panel-heading text-center"><h1 style="font-size: 70px;"><i class="mdi-action-question-answer"></i></h1></div>
-				<div class="panel-body text-center">
-					<h5>Answers</h5>
-					<h3>{{soCtrl.profile.answer_count}}</h3>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="panel panel-info">
-				<div class="panel-heading text-center"><h1 style="font-size: 70px;"><i class="mdi-action-help"></i></h1></div>
-				<div class="panel-body text-center">
-					<h5>Questions</h5>
-					<h3>{{soCtrl.profile.question_count}}</h3>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="panel panel-warning">
-				<div class="panel-heading text-center"><h1 style="font-size: 70px;"><i class="mdi-maps-beenhere"></i></h1></div>
-				<div class="panel-body text-center">
-					<h5>Badges</h5>
-					<h3>{{soCtrl.profile.badge_counts.gold}} // {{soCtrl.profile.badge_counts.silver}} // {{soCtrl.profile.badge_counts.bronze}}</h3>
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-
-	<div class="row">
-		<div class="col-md-12">
-			<div class="well text-center">
-				<h2 id="test">Answers</h2>
-			</div>
-			<div class="well">
-				<div class="form-group">
-					<input class="form-control floating-label" 
-					id="focusedInput" 
-					type="text" 
-					placeholder="Write something to make the label float"
-					ng-model="search"
-					ng-change="soCtrl.filterList(search)"></div>
-
-					<h5>Filter</h5>
-					<div class="btn-group" role="group" aria-label="...">
-						<button type="button"
-						class="btn btn-default"
-						ng-click="filter = {is_accepted:false}">
-						Not Accepted Answers</button>
-						<button type="button"
-						class="btn btn-default"
-						ng-click="filter = {is_accepted:true}">
-						Accepted Answers</button>
-						<button type="button"
-						class="btn btn-default"
-						ng-click="filter = {}">
-						None</button>
-					</div>
-
-					<h5>Order</h5>
-					<div class="btn-group" role="group" aria-label="...">
-						<button type="button"
-						class="btn btn-default"
-						ng-click="order = 'title'; reverse = false">
-						Title</button>
-						<button type="button"
-						class="btn btn-default"
-						ng-click="order = 'score';  reverse = true">
-						Score</button>
-					</div>
-				
-			</div>
-			<div class="list-group">
-				<div ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse" 
-					 class="well fade"
-					 ng-init="showContent = false">
-
-					<div class="list-group-item sub">
-						<div class="row-action-primary">
-							<i class=""> {{d.score}}</i>
-						</div>
-						<div class="row-content">
-							<div ng-if="d.is_accepted" class="least-content">Accepted answer</div>
-							<h4 class="list-group-item-heading">
-								<a ng-href="{{d.link}}"
-								target="_blank">{{d.title}}</a>
-							</h4>
-							<button ng-click="showContent = !showContent" class="btn btn-success pull-right">Toggle Answer</button>
-							<p>{{soCtrl.getDate(d.creation_date)}}</p>
-							<p ng-if="showContent" ng-bind-html="soCtrl.getHtml(d.body)"></p>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-</div>
--->
 
