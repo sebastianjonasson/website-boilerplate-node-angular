@@ -41,12 +41,35 @@
 	            <h4 ng-click="showFilters = !showFilters">Filters</h4>
 	          </div>
 	        </md-item-content>
+        </md-item>
+        <md-item>
 	        <md-item-content>
 	          <div class="md-tile-left">
 	              <i class="fa fa-stack-overflow"></i>
 	          </div>
 	          <div class="md-tile-content">
 	            <h4>Stackoverflow Profile</h4>
+	          </div>
+	        </md-item-content>
+	      </md-item>
+	      <md-divider></md-divider>
+      	<md-item>
+	        <md-item-content>
+	          <div class="md-tile-left">
+	              <i class="fa fa-github"></i>
+	          </div>
+	          <div class="md-tile-content">
+	            <h4>Github</h4>
+	          </div>
+	        </md-item-content>
+	      </md-item>
+	      <md-item>
+	        <md-item-content>
+	          <div class="md-tile-left">
+	              <i class="fa fa-linkedin"></i>
+	          </div>
+	          <div class="md-tile-content">
+	            <h4>Linkedin</h4>
 	          </div>
 	        </md-item-content>
 	      </md-item>
@@ -79,9 +102,8 @@
 	</md-sidenav>
 
 
-  <div flex style="height:100%; margin: 24px;" ng-if="!soCtrl.selectedItem">
-     <md-content  class="md-padding" style="height:inherit;padding: 24px;">
-     <md-subheader class="md-primary" style="color:#000;">Unread Messages</md-subheader>
+  <div flex style="height:100%; margin: 24px 24px 0 24px;" >
+     <md-content  class="md-padding md-whiteframe-z1" style="height:inherit;padding: 24px 24px 0 24px;" ng-if="!soCtrl.selectedItem">
         <md-list>
           <md-item ng-repeat="d in soCtrl.items | filter:filter | orderBy:order:reverse">
             <md-item-content ng-click="soCtrl.viewEntry(d);">
@@ -107,8 +129,8 @@
         </md-list>
         
       </md-content>
-      <md-content class="md-padding md-whiteframe-z1" style="height:inherit;padding: 24px;">
-      		<md-button ng-if="soCtrl.selectedItem" ng-click="soCtrl.goBack()">Back</md-button>
+      <md-content ng-if="soCtrl.selectedItem" class="md-padding md-whiteframe-z1" style="height:inherit;padding: 24px;">
+      		<md-button  ng-click="soCtrl.goBack()">Back</md-button>
       		<h2>{{soCtrl.selectedItem.title}}</h2>
       		<h4>{{soCtrl.selectedItem.creation_date}}</h4>
 
