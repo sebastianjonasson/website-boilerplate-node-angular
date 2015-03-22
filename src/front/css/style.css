@@ -83,3 +83,7 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 .font-size-full {
 	font-size: 100%;
 }
+
+.inline-header {
+  display: inline;
+}

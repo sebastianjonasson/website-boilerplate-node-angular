@@ -1,6 +1,71 @@
+<div class="row" ng-init="order = 'title'; filter = {}; reverse = false; search='';">
+	<div class="col-md-12">
+		<div class="form-group">
+      		<div class="col-lg-3">
+      			<h5><i class="fa fa-filter"></i> Filter</h5>
+        		<div class="radio">
+		          <label>
+		            <input type="radio" value="true" ng-model="filter.is_accepted">
+		            Accepted Answer
+		          </label>
+        		</div>
+		        <div class="radio">
+		          <label>
+		            <input type="radio" value="false" ng-model="filter.is_accepted">
+		            Not Accepted Answer
+		          </label>
+		        </div>
+		        <div class="radio">
+		          <label>
+		            <input type="radio" value="" ng-model="filter.is_accepted" checked="">
+		            None
+		          </label>
+		        </div>
+     		</div>
+    	</div>
+
+    	<div class="form-group">
+      		<div class="col-lg-3">
+      			<h5><i class="fa fa-sort"></i> Order</h5>
+        		<div class="radio">
+		          <label>
+		            <input type="radio" 
+		            	   checked="" 
+		            	   ng-model="order" 
+		            	   value="score" 
+		            	   ng-click="reverse = true">
+		            	   Score
+		          </label>
+        		</div>
+		        <div class="radio">
+		          <label>
+		            <input type="radio" 
+		            	   ng-model="order" 
+		            	   value="title" 
+		            	   ng-click="reverse = false">
+		            	   Name
+		          </label>
+		        </div>
+     		</div>
+    	</div>
+    	<div class="form-group">
+			<div class="col-lg-5">
+		   		<h5><i class="fa fa-search"></i> Search</h5>
+		  		<input class="form-control" 
+		  			   id="focusedInput" 
+		  			   type="text" 
+		  			   placeholder="Searchterm" 
+		  			   ng-model="search"
+		  			   ng-change="soCtrl.filterList(search)">
+		  	</div>
+		</div>
+	</div>
+</div>
 <div class="list-group">
-  <a ng-href="#/stackoverflow/item/{{item.answer_id}}" class="list-group-item" ng-repeat="item in soCtrl.items">
-    <h4 class="list-group-item-heading">{{item.title}}</h4>
-    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+  <a ng-href="#/stackoverflow/item/{{item.answer_id}}" 
+  	 class="list-group-item" 
+  	 ng-repeat="item in soCtrl.items | filter:filter | orderBy:order:reverse">
+	    <h4 class="list-group-item-heading">{{item.title}}</h4>
+	    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
   </a>
 </div>
