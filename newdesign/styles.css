@@ -68,3 +68,14 @@
 	z-index: 998;
 	margin-bottom: 1em;
 }
+
+.git-header {
+  background-image:url(github_header.jpg);
+  min-height: 200px;
+  z-index: 998;
+  margin-bottom: 1em;
+}
+
+.font-size-full {
+	font-size: 100%;
+}

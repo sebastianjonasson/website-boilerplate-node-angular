@@ -1,3 +1,3 @@
 function linkedinController(profile) {
-    this.profile = profile.data.person;
+    this.profile = profile.data;
 }

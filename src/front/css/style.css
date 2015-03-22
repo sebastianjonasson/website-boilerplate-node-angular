@@ -2,9 +2,84 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 	height:100%;
 }
 
+.container-fluid {
+	padding-left:0;
+	padding-right:0;
+}
+
+.shade-2 {
+  box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
+}
+
+.shade-4 {
+  box-shadow: 0px 16px 28px 0 rgba(0, 0, 0, 0.22);
+}
+
+.sidebar {
+	background-color:#fff; 
+	height:100%; 
+	position:fixed; 
+	z-index:1000;
+}
+
+.no-side-pad {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.no-pad {
+	padding: 0;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: solid #ddd;
+  border-width: 1px 0px;
+ }
+
+ .list-group-item:first-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .circular {
-  border-radius: 30px;
+  border-radius: 60px;
   border: 1px solid #ddd;
-  width: 70px;
-  margin: 16px; 
+  width: 120px;
+  margin: 16px;
+  z-index: 999;
+}
+
+.text-ciruclar {
+  border-radius: 60px;
+  width: 120px;
+  height:120px;
+  margin: 16px;
+  z-index: 999;
+  font-size: 24px;
+  padding-top: 34px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header {
+	background-image:url('/client/img/header.jpg');
+	min-height: 200px;
+	z-index: 998;
+	margin-bottom: 1em;
+}
+
+.git-header {
+  background-image:url('/client/img/header.jpg');
+  min-height: 200px;
+  z-index: 998;
+  margin-bottom: 1em;
+}
+
+.font-size-full {
+	font-size: 100%;
 }

@@ -13,6 +13,10 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         },
         resolveLinkedinProfile = function(linkedInDataService) {
             return linkedInDataService.getProfile();
+        },
+        resolveStackoverflowAnswer = function(stackOverflowDataService, $stateParams) {
+            var answerId = $stateParams.answerId;
+            return stackOverflowDataService.getAnswer(answerId);
         };
 
     //$locationProvider.html5Mode(true);
@@ -35,11 +39,44 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/home'
         })
         .state('app.stackoverflow', {
-            templateUrl: 'partials/stackoverflow.html',
             url: '/stackoverflow',
-            controller: 'stackOverflowController as soCtrl',
+            template:'<div ui-view></div>'
+            /*resolve: {
+                items: ['stackOverflowDataService',resolveStackoverflowItems],
+                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
+            }*/
+        })
+        .state('app.stackoverflow.answers', {
+            templateUrl: 'partials/stackoverflow-items.html',
+            url: '/answers',
+            controller: 'stackOverflowItemsController as soCtrl',
+            resolve: {
+                items: ['stackOverflowDataService', resolveStackoverflowItems],
+                //profile: ['stackOverflowDataService', resolveStackoverflowProfile]
+            }
+        })
+        .state('app.stackoverflow.questions', {
+            templateUrl: 'partials/stackoverflow.html',
+            url: '/questions',
+            controller: 'stackOverflowItemsController as soCtrl',
             resolve: {
                 items: ['stackOverflowDataService',resolveStackoverflowItems],
+                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
+            }
+        })
+        .state('app.stackoverflow.viewanswer', {
+            templateUrl: 'partials/stackoverflow-view-answer.html',
+            url: '/item/:answerId',
+            controller: 'stackOverflowViewAnswerController as so',
+            resolve: {
+                answer: ['stackOverflowDataService', '$stateParams', resolveStackoverflowAnswer],
+            }
+        })
+        .state('app.stackoverflow.profile', {
+            templateUrl: 'partials/stackoverflow-profile.html',
+            url: '/profile',
+            controller: 'stackOverflowProfileController as so',
+            resolve: {
                 profile: ['stackOverflowDataService', resolveStackoverflowProfile]
             }
         })
@@ -54,7 +91,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('app.linkedin', {
             templateUrl: 'partials/linkedin.html',
-            url: '/linkedin',
+            url: '/linkedin/profile',
             controller:'linkedinController as li'
         })
 }

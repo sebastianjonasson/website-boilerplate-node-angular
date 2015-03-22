@@ -2,7 +2,6 @@
  *	Includes
  */
 var request = require('request'),
-	parseString = require('xml2js').parseString,
 	credentials = require('../../credentials');
 
 /*
@@ -22,7 +21,7 @@ exports.auth = function(req, res) {
 	if(!auth_code) {
 		auth_code = req.query.code;
 		var tokenUrl = buildTokenUrl();
-
+		
 		request.post({url:tokenUrl}, function(err,httpResponse,body){ 
 			body = JSON.parse(body);
 			access_token = body.access_token;
@@ -44,10 +43,8 @@ exports.profile = function(req, res) {
 var getProfile = function() {
 	var url = buildProfileEndpointUrl();
 	request(url, function(error, response, body) {
-		parseString(body, function (err, result) {
-		    console.dir(result);
-		    profileData = result;
-		});
+		console.log(body);
+		profileData = JSON.parse(body);
 	});
 }
 
@@ -55,7 +52,7 @@ var buildTokenUrl = function() {
 	var tokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
 		tokenUrl += "?grant_type=authorization_code";
 		tokenUrl += "&code="+auth_code;
-		tokenUrl += "&redirect_uri="+credentials.domain+"/linkedin/auth";
+		tokenUrl += "&redirect_uri="+credentials.domain.url+"/linkedin/auth";
 		tokenUrl += "&client_id="+api_key;
 		tokenUrl += "&client_secret="+api_secret;
 
@@ -63,5 +60,5 @@ var buildTokenUrl = function() {
 }
 
 var buildProfileEndpointUrl = function() {
-	return "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,educations,picture-url,positions,connections,headline,location)?oauth2_access_token="+access_token;
+	return "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,educations,picture-url,positions,num-connections,headline,location,summary)?format=json&oauth2_access_token="+access_token;
 }

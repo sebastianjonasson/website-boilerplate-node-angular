@@ -1,3 +1,24 @@
 <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
-	<div class="fade" ui-view id="secondary-wrapper"></div>
+     <div class="col-md-2 shade-2 sidebar">
+        <h3>Sebastian Jonasson</h3>
+        <hr />
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation"><i class="fa fa-stack-overflow"></i> Stack Overflow</li>
+          <li role="presentation"><a href="#/stackoverflow/profile"><i class="fa fa-user"></i> Profile</a></li>
+          <li role="presentation"><a href="#/stackoverflow/answers"><i class="fa fa-reply"></i> Answers</a></li>
+          <li role="presentation"><a href="#/stackoverflow/questions"><i class="fa fa-reply"></i> Questions</a></li>
+          <li role="presentation"><i class="fa fa-linkedin"></i> Linkedin</li>
+          <li role="presentation"><a href="#linkedin/profile"><i class="fa fa-user"></i> Profile</a></li>
+          <li role="presentation"><i class="fa fa-github"></i> Github</li>
+           <li role="presentation"><a href="#github/repos"><i class="fa fa-database"></i> Repos</a></li>
+        </ul>
+        <hr />
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation"><a href="#">Github repo for this website</a></li>
+        </ul>
+
+	  </div>
+	  <div class="col-md-10 col-md-offset-2 no-side-pad">
+	  	<div class="fade" ui-view id="secondary-wrapper"></div>
+	  </div>
 </div>
