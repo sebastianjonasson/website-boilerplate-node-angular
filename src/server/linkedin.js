@@ -60,5 +60,5 @@ var buildTokenUrl = function() {
 }
 
 var buildProfileEndpointUrl = function() {
-	return "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,educations,picture-url,positions,num-connections,headline,location,summary)?format=json&oauth2_access_token="+access_token;
+	return "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,skills,specialties,educations,picture-urls::(original),positions,public-profile-url,num-connections,headline,location,summary)?format=json&oauth2_access_token="+access_token;
 }

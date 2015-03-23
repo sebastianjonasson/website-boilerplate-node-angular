@@ -1,4 +1,3 @@
-function githubController(repos, profile) {
+function githubController(repos) {
     this.repos = repos.data;
-    this.profile = profile.data;
 }

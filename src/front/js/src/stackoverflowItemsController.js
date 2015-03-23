@@ -1,8 +1,6 @@
 function stackOverflowItemsController(items, profile, $sce, $mdSidenav, $mdMedia) {
     var items = items.data.items;
-
     this.selectedItem;
-    
     this.items = angular.copy(items);
 
     this.filterList = function(search) {
@@ -17,11 +15,13 @@ function stackOverflowItemsController(items, profile, $sce, $mdSidenav, $mdMedia
 
         this.items = filteredItems;
     }
-
     this.getDate = function(date) {
         return new Date(date).toString();
     }
-    
     this.getHtml = $sce.trustAsHtml;
+        this.getDate = function(timestamp) {
+        console.log(new Date(timestamp).toDateString())
+        return new Date(timestamp).toDateString();
+    }
     
 }

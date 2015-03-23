@@ -1,67 +1,9 @@
-<div class="col-md-12">
- 
-		<div class="col-md-12">
-			<br />
-			<div class="panel">
-			    <div class="panel-heading" style="background-image:url('{{git.profile.avatar_url}}'); height:200px;"></div>
-			    <div class="panel-body text-center">
-			    	<div class="col-md-6">
-			    		<h4>{{git.profile.login}} </h4>
-			    	</div>
-			        <div class="col-md-6">
-			    		<h4>Public repos</h4>
-				<h3>{{git.profile.public_repos}}</h3>
-			    	</div>
-			    </div>
-			</div>
-		</div>
+<div class="list-group">
+  <a ng-repeat="repo in git.repos"
+  	 ng-href="{{repo.html_url}}" 
+  	 class="list-group-item" 
+  	 target="_blank">
+	    <h4 class="list-group-item-heading">{{repo.owner.login}}/{{repo.name}} <small>{{repo.language}}</small></h4>
+	    <p class="list-group-item-text">{{repo.description}}</p>
+  </a>
 </div>
-<div class="col-md-12">
-	<div class="col-md-6">
-		<br />
-		<div ng-repeat="repo in git.repos">
-		<div class="panel" ng-show="$index % 2 == 0">
-		    <div class="panel-heading panel-github-header"></div>
-		    <div class="panel-body">
-		        <h4>
-			<a ng-href="{{repo.owner.html_url}}"
-				   target="_blank">
-				   {{repo.owner.login}}</a>
-		    </a>/
-			<a ng-href="{{repo.html_url}}"
-				   target="_blank">
-				   {{repo.name}}</a>
-				   <small>{{repo.language}}</small></h4>
-		    </a>
-		    <p>
-		    	{{repo.description}}
-		    </p>
-		    </div>
-		</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<br />
-		<div ng-repeat="repo in git.repos">
-		<div class="panel" ng-hide="$index % 2 == 0">
-		    <div class="panel-heading panel-github-header"></div>
-		    <div class="panel-body">
-		        <h4>
-			<a ng-href="{{repo.owner.html_url}}"
-				   target="_blank">
-				   {{repo.owner.login}}</a>
-		    </a>/
-			<a ng-href="{{repo.html_url}}"
-				   target="_blank">
-				   {{repo.name}}</a>
-				   <small>{{repo.language}}</small></h4>
-		    </a>
-		    <p>
-		    	{{repo.description}}
-		    </p>
-		    </div>
-		</div>
-		</div>
-	</div>
-</div>
-

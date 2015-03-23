@@ -87,3 +87,7 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 .inline-header {
   display: inline;
 }
+
+.stackoverflow-profile-data {
+  margin-bottom: 3em;
+}

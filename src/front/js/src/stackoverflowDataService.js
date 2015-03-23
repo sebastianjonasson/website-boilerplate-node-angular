@@ -1,14 +1,35 @@
 function stackOverflowDataService($http, $q) {
     var stackOverflowDataService = {},
-        answersCache;
+        answersCache,
+        questionsCache;
 
     stackOverflowDataService.getData = function() {
-        return $http.get('/stackoverflow/items')
+        return $http.get('/stackoverflow/answers')
         	.then(function(answers) {
         		answersCache = answers;
         		return answers;
         	})
     }
+
+    stackOverflowDataService.getQuestions = function() {
+        var url = '/stackoverflow/questions';
+        return $http.get(url)
+            .then(function(questions) {
+                questionsCache = questions;
+                return questions;
+            })
+    }
+
+    stackOverflowDataService.getQuestion = function(id) {
+        var question;
+        angular.forEach(questionsCache.data.items, function(q) {
+          if(q.question_id == id) {
+            question = q;
+          }
+        })
+        console.log(question);
+        return question;
+    };
 
     stackOverflowDataService.getProfile = function() {
         return $http.get('/stackoverflow/profile');

@@ -1,20 +1,20 @@
         <div class="row text-center header shade-2">
           <div class="col-md-6 col-md-offset-3 text-center">
-            <img ng-src="{{li.profile.pictureUrl}}" class="circular shade-4 pull-left"/>
-            <h4>{{li.profile.headline}}</h4>
+            <img ng-src="{{li.profile.pictureUrls.values[0]}}" class="circular shade-4 pull-left"/>
+            <h4 class="">{{li.profile.headline}}</h4>
           </div>
           
         </div>
         <div class="row">
           <div class="container">
-            <div class="col-md-12 no-side-pad" ng-init="tabToShow = 'work'">
+            <div class="col-md-12 no-side-pad" ng-init="tabToShow = 'about'">
               <div class="row">
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" ng-click="tabToShow='work'" class="active"><a aria-controls="work-history" role="tab">Experience</a></li>
-                    <li role="presentation" ng-click="tabToShow='education'"><a aria-controls="education" role="tab" >Education</a></li>
-                    <li role="presentation" ng-click="tabToShow='skills'"><a aria-controls="skills" role="tab" >Skills</a></li>
-                    <li role="presentation" ng-click="tabToShow='about'"><a aria-controls="about" role="tab">About</a></li>
+                    <li role="presentation" ng-click="tabToShow='about'" ng-class="{active: (tabToShow=='about')}"><a aria-controls="about" role="tab">About</a></li>
+                    <li role="presentation" ng-click="tabToShow='work'" ng-class="{active: (tabToShow=='work')}"><a aria-controls="work-history" role="tab">Experience</a></li>
+                    <li role="presentation" ng-click="tabToShow='education'" ng-class="{active: (tabToShow=='education')}"><a aria-controls="education" role="tab" >Education</a></li>
+                    <li role="presentation" ng-click="tabToShow='skills'" ng-class="{active: (tabToShow=='skills')}"><a aria-controls="skills" role="tab" >Skills</a></li>
                   </ul>
 
                   <!-- Tab panes -->
@@ -74,16 +74,12 @@
                             <h6>{{li.profile.numConnections}}</h6>
                           </div>
                           <div class="col-md-6">
-                            <h5><i class="fa fa-graduation-cap"></i>Education</h5>
+                            <h5><i class="fa fa-graduation-cap"></i> Education</h5>
                             {{li.profile.educations.values[0].fieldOfStudy}}
                           </div>
                           <div class="col-md-6">
-                           <h5><i class="fa fa-info-circle"></i> Personal Details</h5>
-                            --REPLACE
-                         </div>
-                         <div class="col-md-6">
-                           <h5><i class="fa fa-gamepad"></i> Interests</h5>
-                           --REPLACE
+                           <h5><i class="fa fa-info-circle"></i> Linkedin Profile</h5>
+                            <a ng-href="{{li.profile.publicProfileUrl}}" target="_blank">View</a>
                          </div>
                        </div>
                         

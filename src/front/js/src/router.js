@@ -26,8 +26,12 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
                     return data;
                 })
         },
-        resolveStackoverflowRecentAnswers = function(stackOverflowDataService) {
-
+        resolveStackoverflowQuestions = function(stackOverflowDataService) {
+            return stackOverflowDataService.getQuestions();
+        },
+        resolveStackoverflowQuestion = function(stackOverflowDataService, $stateParams) {
+            var id = $stateParams.questionId;
+            return stackOverflowDataService.getQuestion(id);
         }
 
     //$locationProvider.html5Mode(true);
@@ -55,7 +59,8 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             resolve: {
                 items: ['stackOverflowDataService',resolveStackoverflowItems],
                 profile: ['stackOverflowDataService', resolveStackoverflowProfile],
-                activity: ['stackOverflowDataService', resolveStackoverflowActivity]
+                activity: ['stackOverflowDataService', resolveStackoverflowActivity],
+                questions: ['stackOverflowDataService', resolveStackoverflowQuestions]
             }
         })
         .state('app.stackoverflow.answers', {
@@ -64,9 +69,9 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'stackOverflowItemsController as soCtrl'
         })
         .state('app.stackoverflow.questions', {
-            templateUrl: 'partials/stackoverflow.html',
+            templateUrl: 'partials/stackoverflow-questions.html',
             url: '/questions',
-            controller: 'stackOverflowItemsController as soCtrl'
+            controller: 'stackOverflowQuestionsController as soCtrl'
         })
         .state('app.stackoverflow.viewanswer', {
             templateUrl: 'partials/stackoverflow-view-answer.html',
@@ -74,6 +79,14 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'stackOverflowViewAnswerController as so',
             resolve: {
                 answer: ['stackOverflowDataService', '$stateParams', resolveStackoverflowAnswer]
+            }
+        })
+        .state('app.stackoverflow.viewquestion', {
+            templateUrl: 'partials/stackoverflow-view-question.html',
+            url: '/questions/:questionId',
+            controller: 'stackOverflowViewQuestionController as so',
+            resolve: {
+                question: ['stackOverflowDataService', '$stateParams', resolveStackoverflowQuestion]
             }
         })
         .state('app.stackoverflow.profile', {
@@ -86,8 +99,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/github',
             controller: 'githubController as git',
             resolve: {
-                repos: ['githubDataService', resolveGithubRepos],
-                profile: ['githubDataService',resolveGithubProfile],
+                repos: ['githubDataService', resolveGithubRepos]
             }
         })
         .state('app.linkedin', {

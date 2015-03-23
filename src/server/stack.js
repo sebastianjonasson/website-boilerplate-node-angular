@@ -9,7 +9,8 @@ var request = require('request'),
 app.get('/code', stackoverflow.authRoute);
 app.get('/github/auth', github.githubAuthRoute);
 app.get('/linkedin/auth', linkedin.auth);
-app.get('/stackoverflow/items', stackoverflow.items)
+app.get('/stackoverflow/answers', stackoverflow.answers)
+app.get('/stackoverflow/questions', stackoverflow.questions)
 app.get('/stackoverflow/profile', stackoverflow.profile)
 app.get('/stackoverflow/activity', stackoverflow.activity)
 app.get('/github/repos', github.repos);

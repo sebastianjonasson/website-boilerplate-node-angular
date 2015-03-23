@@ -66,6 +66,6 @@
   	 class="list-group-item" 
   	 ng-repeat="item in soCtrl.items | filter:filter | orderBy:order:reverse">
 	    <h4 class="list-group-item-heading">{{item.title}}</h4>
-	    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+	    <p class="list-group-item-text">{{soCtrl.getDate(item.creation_date)}}</p>
   </a>
 </div>

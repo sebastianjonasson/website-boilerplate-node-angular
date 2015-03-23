@@ -4,7 +4,7 @@
   	</div>
 </div>
  <div class="container">
-        <div class="row">
+        <div class="row stackoverflow-profile-data">
           <div class="col-md-3">
               <h5><i class="fa fa-star"></i> Reputation</h5>
               <h6>{{so.profile.reputation}}</h6>
@@ -21,25 +21,23 @@
               <h5><i class="fa fa-question"></i> Badges</h5>
               <h6>{{so.profile.badge_counts.gold}} // {{so.profile.badge_counts.silver}} // {{so.profile.badge_counts.bronze}}</h6>
             </div>
-            
         </div>
         <div class="row">
           <div class="col-md-8">
-            <div class="page-header">
-              <h3>Activity <small>A.k.a reputation history</small></h3>
-            </div>
             <div class="panel panel-default">
+                <div class="panel-heading">Recent Activity</div>
                 <div class="panel-body">
-                  <canvas id="pie" class="chart chart-pie" data="so.data" labels="so.labels"></canvas> 
+                  <canvas id="pie" 
+                          class="chart chart-pie" 
+                          data="so.data" 
+                          labels="so.labels"
+                          legend="true"></canvas> 
                 </div>
             </div>
           </div>
          
         
           <div class="col-md-4">
-            <div class="page-header">
-              <h3>Contribution</h3>
-            </div>
               <div class="panel panel-default">
                 <div class="panel-body no-pad">
                   <table class="table table-striped table-hover ">
@@ -73,22 +71,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
+                      <tr ng-repeat="question in so.recentQuestions"
+                          ng-click="so.viewQuestion(question.question_id);">
+                        <td>{{question.title}}</td>
                       </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
+                      <tr ui-sref="app.stackoverflow.questions">
                         <td>View All</td>
                       </tr>
                     </tbody>
@@ -99,9 +86,4 @@
           </div>
         </div>
       </div>
-        <div class="row text-center">
-          asd
-        </div>
-      </div>
-
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    </div>

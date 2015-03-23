@@ -12,7 +12,8 @@ var access_token = "",
 	key = credentials.stackoverflow.api_key,
 	clientId = credentials.stackoverflow.client_id,
 	clientSecret = credentials.stackoverflow.client_secret,
-	sofData,
+	answersData,
+	questionsData,
 	profiledata,
 	activityData;
 
@@ -35,7 +36,7 @@ exports.authRoute = function(req, res) {
 			fetchStackExchangeData();
 			fetchProfile();
 			fetchActivity();
-			console.log(access_token);
+			fetchQuestions();
 
 		})
 	} else {
@@ -45,17 +46,20 @@ exports.authRoute = function(req, res) {
 }
 
 exports.getData = function() {
-	return sofData;
+	return answersData;
 };
 exports.profile = function(req, res) {
 	res.json(profiledata);
 }
 
-exports.items = function(req, res) {
-	res.json(sofData);
+exports.answers = function(req, res) {
+	res.json(answersData);
 }
 exports.activity = function(req, res) {
 	res.json(activityData);
+}
+exports.questions = function(req, res) {
+	res.json(questionsData);
 }
 
 /*
@@ -63,15 +67,15 @@ exports.activity = function(req, res) {
  */
 var fetchStackExchangeData = function() {
 	var endpoint = "/me/answers";
-	var getParams = "&order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb";
+	getParams = "&order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb";
 
 	stackexchangeAPIRequest(endpoint, getParams, "get", function(data) {
-		sofData = data;
+		answersData = data;
 	});
 }
 var fetchProfile = function() {
 	var endpoint = "/me";
-	var getParams = "&order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50";
+	getParams = "&order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50";
 
 	stackexchangeAPIRequest(endpoint, getParams, "get", function(data) {
 		profiledata = data;
@@ -83,6 +87,15 @@ var fetchActivity = function() {
 
 	stackexchangeAPIRequest(endpoint, "", "get", function(data) {
 		activityData = data;
+	});
+}
+
+var fetchQuestions = function() {
+	var endpoint = '/me/questions',
+		getParams = '&order=desc&sort=activity&site=stackoverflow&filter=!9YdnSJ*_S';
+
+	stackexchangeAPIRequest(endpoint, getParams, "get", function(data) {
+		questionsData = data;
 	});
 }
 
