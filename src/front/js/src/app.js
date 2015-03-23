@@ -1,4 +1,4 @@
-angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial'])
+angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial', 'chart.js'])
     .controller('appController', ['profile', appController])
     .controller('stackOverflowItemsController', ['items', '$sce','$mdSidenav','$mdMedia', stackOverflowItemsController])
     .controller('stackOverflowProfileController', ['profile', stackOverflowProfileController])
