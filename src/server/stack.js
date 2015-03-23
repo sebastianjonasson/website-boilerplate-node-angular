@@ -11,6 +11,7 @@ app.get('/github/auth', github.githubAuthRoute);
 app.get('/linkedin/auth', linkedin.auth);
 app.get('/stackoverflow/items', stackoverflow.items)
 app.get('/stackoverflow/profile', stackoverflow.profile)
+app.get('/stackoverflow/activity', stackoverflow.activity)
 app.get('/github/repos', github.repos);
 app.get('/github/profile', github.profile);
 app.get('/linkedin/profile', linkedin.profile);

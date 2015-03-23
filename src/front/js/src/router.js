@@ -17,7 +17,18 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         resolveStackoverflowAnswer = function(stackOverflowDataService, $stateParams) {
             var answerId = $stateParams.answerId;
             return stackOverflowDataService.getAnswer(answerId);
-        };
+        },
+        resolveStackoverflowActivity = function(stackOverflowDataService) {
+            return stackOverflowDataService.getActivity()
+                .then(function(data) {
+                    console.log("resolve");
+                    console.log(data);
+                    return data;
+                })
+        },
+        resolveStackoverflowRecentAnswers = function(stackOverflowDataService) {
+
+        }
 
     //$locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/home');
@@ -31,7 +42,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: 'partials/layout.html',
             controller: 'appController as appCtrl',
             resolve: {
-                profile: ['linkedInDataService',resolveLinkedinProfile]
+                profile: ['linkedInDataService', resolveLinkedinProfile]
             }
         })
         .state('app.home', {
@@ -40,45 +51,35 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('app.stackoverflow', {
             url: '/stackoverflow',
-            template:'<div ui-view></div>'
-            /*resolve: {
+            template:'<div ui-view></div>',
+            resolve: {
                 items: ['stackOverflowDataService',resolveStackoverflowItems],
-                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
-            }*/
+                profile: ['stackOverflowDataService', resolveStackoverflowProfile],
+                activity: ['stackOverflowDataService', resolveStackoverflowActivity]
+            }
         })
         .state('app.stackoverflow.answers', {
             templateUrl: 'partials/stackoverflow-items.html',
             url: '/answers',
-            controller: 'stackOverflowItemsController as soCtrl',
-            resolve: {
-                items: ['stackOverflowDataService', resolveStackoverflowItems],
-                //profile: ['stackOverflowDataService', resolveStackoverflowProfile]
-            }
+            controller: 'stackOverflowItemsController as soCtrl'
         })
         .state('app.stackoverflow.questions', {
             templateUrl: 'partials/stackoverflow.html',
             url: '/questions',
-            controller: 'stackOverflowItemsController as soCtrl',
-            resolve: {
-                items: ['stackOverflowDataService',resolveStackoverflowItems],
-                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
-            }
+            controller: 'stackOverflowItemsController as soCtrl'
         })
         .state('app.stackoverflow.viewanswer', {
             templateUrl: 'partials/stackoverflow-view-answer.html',
             url: '/item/:answerId',
             controller: 'stackOverflowViewAnswerController as so',
             resolve: {
-                answer: ['stackOverflowDataService', '$stateParams', resolveStackoverflowAnswer],
+                answer: ['stackOverflowDataService', '$stateParams', resolveStackoverflowAnswer]
             }
         })
         .state('app.stackoverflow.profile', {
             templateUrl: 'partials/stackoverflow-profile.html',
             url: '/profile',
-            controller: 'stackOverflowProfileController as so',
-            resolve: {
-                profile: ['stackOverflowDataService', resolveStackoverflowProfile]
-            }
+            controller: 'stackOverflowProfileController as so'
         })
         .state('app.github', {
             templateUrl: 'partials/github.html',

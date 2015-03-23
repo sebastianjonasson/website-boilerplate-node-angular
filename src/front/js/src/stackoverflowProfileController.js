@@ -1,5 +1,13 @@
-function stackOverflowProfileController(profile) {
+function stackOverflowProfileController(profile, activity, items, $state) {
+	console.log(activity);
+	console.log(items);
 	this.profile = profile.data.items[0];
-	this.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-  	this.data = [300, 500, 100, 40, 120];
+	this.labels = activity.labels;
+  	this.data = activity.data;
+  	this.recentAnswers = angular.copy(items).data.items.splice(0,5);
+
+  	this.viewAnswer = function(id) {
+  		$state.go('app.stackoverflow.viewanswer', {answerId: id});
+  	}
+
 }

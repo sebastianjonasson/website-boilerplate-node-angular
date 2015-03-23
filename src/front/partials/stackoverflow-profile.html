@@ -1,6 +1,6 @@
 <div class="row text-center header shade-2">
 	<div class="col-md-4 col-md-offset-4 text-center">
-		<img src="/client/img/profile.png" class="circular shade-4"/>
+		<img ng-src="{{so.profile.profile_image}}" class="circular shade-4"/>
   	</div>
 </div>
  <div class="container">
@@ -35,8 +35,7 @@
             </div>
           </div>
          
-          
-
+        
           <div class="col-md-4">
             <div class="page-header">
               <h3>Contribution</h3>
@@ -50,22 +49,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
+                      <tr ng-repeat="answer in so.recentAnswers"
+                          ng-click="so.viewAnswer(answer.answer_id);">
+                        <td>
+                          {{answer.title}}
+                        </td>
                       </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
-                        <td>Lorem ipsum dolor sit amet</td>
-                      </tr>
-                      <tr>
+                      <tr ui-sref="app.stackoverflow.answers">
                         <td>View All</td>
                       </tr>
                     </tbody>
@@ -107,10 +97,6 @@
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
         <div class="row text-center">

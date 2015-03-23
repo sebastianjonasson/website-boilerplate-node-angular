@@ -13,7 +13,8 @@ var access_token = "",
 	clientId = credentials.stackoverflow.client_id,
 	clientSecret = credentials.stackoverflow.client_secret,
 	sofData,
-	profiledata;
+	profiledata,
+	activityData;
 
 /*
  *	Interface
@@ -33,6 +34,8 @@ exports.authRoute = function(req, res) {
 			access_token  = myToken;
 			fetchStackExchangeData();
 			fetchProfile();
+			fetchActivity();
+			console.log(access_token);
 
 		})
 	} else {
@@ -51,34 +54,49 @@ exports.profile = function(req, res) {
 exports.items = function(req, res) {
 	res.json(sofData);
 }
+exports.activity = function(req, res) {
+	res.json(activityData);
+}
 
 /*
  *	Functions
  */
 var fetchStackExchangeData = function() {
-	var endpoint = "/me/answers?order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb";
+	var endpoint = "/me/answers";
+	var getParams = "&order=desc&sort=activity&site=stackoverflow&filter=!*L7QmUk)4j2gbRPb";
 
-	stackexchangeAPIRequest(endpoint, "get", function(data) {
+	stackexchangeAPIRequest(endpoint, getParams, "get", function(data) {
 		sofData = data;
 	});
 }
 var fetchProfile = function() {
-	var endpoint = "/me?order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50";
+	var endpoint = "/me";
+	var getParams = "&order=desc&sort=reputation&site=stackoverflow&filter=!9YdnSAu50";
 
-	stackexchangeAPIRequest(endpoint, "get", function(data) {
+	stackexchangeAPIRequest(endpoint, getParams, "get", function(data) {
 		profiledata = data;
 	});
 }
 
-var stackexchangeAPIRequest = function(endpoint, method, cb) {
+var fetchActivity = function() {
+	var endpoint = "/me/network-activity";
+
+	stackexchangeAPIRequest(endpoint, "", "get", function(data) {
+		activityData = data;
+	});
+}
+
+var stackexchangeAPIRequest = function(endpoint, getParams, method, cb) {
 	var stackexchangeBaseUrl = "https://api.stackexchange.com/2.2",
-		accessTokenAndKey = "&access_token="+access_token+"&key="+key,
-		requestUrl = stackexchangeBaseUrl + endpoint + accessTokenAndKey,
+		accessTokenAndKey = "?access_token="+access_token+"&key="+key,
+		requestUrl = stackexchangeBaseUrl + endpoint + accessTokenAndKey + getParams,
 		gunzip = zlib.createGunzip(),
 		json = "",
 		headers = {
 		  'Accept-Encoding': 'gzip'
 		};
+
+	console.log(requestUrl);
 
 	reqData = {
 		url: requestUrl,
@@ -93,7 +111,6 @@ var stackexchangeAPIRequest = function(endpoint, method, cb) {
 	gunzip.on('end', function(){
 		var data = JSON.parse(json);
 		cb(data);
-	    console.log(profiledata);
 	});
 
 	request(reqData)
