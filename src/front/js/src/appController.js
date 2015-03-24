@@ -1,4 +1,7 @@
-function appController(profile) {
-	/*this.profile = profile.data.person;
-	console.log(this.profile.person);*/
+function appController($rootScope) {
+	$rootScope.$on('toggleSidebar', function(e, toggle) {
+		this.hideSidebar = true;
+		console.log("got caught!"+ toggle);
+	});
+	this.hideSidebar = false;
 }

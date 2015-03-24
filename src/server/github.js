@@ -29,6 +29,7 @@ exports.githubAuthRoute = function(req, res) {
 		access_token = body.slice(13,53);
 		getRepos();
 		getProfile();
+		console.log(access_token);
 	})
 }
 

@@ -15,13 +15,10 @@ function stackOverflowItemsController(items, profile, $sce, $mdSidenav, $mdMedia
 
         this.items = filteredItems;
     }
-    this.getDate = function(date) {
-        return new Date(date).toString();
-    }
     this.getHtml = $sce.trustAsHtml;
-        this.getDate = function(timestamp) {
-        console.log(new Date(timestamp).toDateString())
-        return new Date(timestamp).toDateString();
+    this.getDate = function(timestamp) {
+        var millsec = (parseInt(timestamp)) * 1000;
+        return new Date(millsec).toDateString();
     }
     
 }

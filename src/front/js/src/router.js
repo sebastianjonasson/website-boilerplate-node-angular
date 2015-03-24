@@ -21,8 +21,6 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         resolveStackoverflowActivity = function(stackOverflowDataService) {
             return stackOverflowDataService.getActivity()
                 .then(function(data) {
-                    console.log("resolve");
-                    console.log(data);
                     return data;
                 })
         },
@@ -35,7 +33,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         }
 
     //$locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/linkedin/profile');
     $stateProvider
         .state('start', {
             templateUrl: 'links.html',

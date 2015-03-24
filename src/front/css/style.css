@@ -91,3 +91,14 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 .stackoverflow-profile-data {
   margin-bottom: 3em;
 }
+
+.primary-color {
+  color:#2196f3;
+}
+
+.answers-filter {
+  z-index: 800;
+  position:relative;
+  top:0;
+
+}

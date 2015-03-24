@@ -1,7 +1,7 @@
         <div class="row text-center header shade-2">
           <div class="col-md-6 col-md-offset-3 text-center">
-            <img ng-src="{{li.profile.pictureUrls.values[0]}}" class="circular shade-4 pull-left"/>
-            <h4 class="">{{li.profile.headline}}</h4>
+            <img ng-src="{{li.profile.pictureUrls.values[0]}}" class="circular shade-4"/>
+            <h4 class="inline-header">{{li.profile.headline}}</h4>
           </div>
           
         </div>
@@ -9,90 +9,92 @@
           <div class="container">
             <div class="col-md-12 no-side-pad" ng-init="tabToShow = 'about'">
               <div class="row">
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" ng-click="tabToShow='about'" ng-class="{active: (tabToShow=='about')}"><a aria-controls="about" role="tab">About</a></li>
-                    <li role="presentation" ng-click="tabToShow='work'" ng-class="{active: (tabToShow=='work')}"><a aria-controls="work-history" role="tab">Experience</a></li>
-                    <li role="presentation" ng-click="tabToShow='education'" ng-class="{active: (tabToShow=='education')}"><a aria-controls="education" role="tab" >Education</a></li>
-                    <li role="presentation" ng-click="tabToShow='skills'" ng-class="{active: (tabToShow=='skills')}"><a aria-controls="skills" role="tab" >Skills</a></li>
-                  </ul>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" ng-click="tabToShow='about'" ng-class="{active: (tabToShow=='about')}"><a aria-controls="about" role="tab">About</a></li>
+                  <li role="presentation" ng-click="tabToShow='work'" ng-class="{active: (tabToShow=='work')}"><a aria-controls="work-history" role="tab">Experience</a></li>
+                  <li role="presentation" ng-click="tabToShow='education'" ng-class="{active: (tabToShow=='education')}"><a aria-controls="education" role="tab" >Education</a></li>
+                  <li role="presentation" ng-click="tabToShow='skills'" ng-class="{active: (tabToShow=='skills')}"><a aria-controls="skills" role="tab" >Skills</a></li>
+                </ul>
 
-                  <!-- Tab panes -->
-                    <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'work'">
+                <!-- Tab panes -->
+                <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'work'">
 
-               
-          <div class="list-group">
-            <a href="#" class="list-group-item" ng-repeat="work in li.profile.positions.values">
-              <h4 class="list-group-item-heading inline-header">{{work.title}}</h4>
-              <h5 class="inline-header">- {{work.company.name}}</h5>
-              <p>{{work.startDate.month}}/{{work.startDate.year}} <span ng-if="!work.isCurrent">- {{work.endDate.month}}/{{work.startDate.year}}</span><p>
-              <p class="list-group-item-text" ng-if="work.summary">{{work.summary}}.</p>
-            </a>
-          </div>
-</div>
-
+                 
+                  <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="work in li.profile.positions.values">
+                      <h4 class="list-group-item-heading inline-header">{{work.title}}</h4>
+                      <h5 class="inline-header">- {{work.company.name}}</h5>
+                      <p>{{work.startDate.month}}/{{work.startDate.year}} <span ng-if="!work.isCurrent">- {{work.endDate.month}}/{{work.startDate.year}}</span><p>
+                        <p class="list-group-item-text" ng-if="work.summary">{{work.summary}}.</p>
+                      </a>
                     </div>
-                    <!-- EDUCATION -->
-                    <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'education'">
-                        <div ng-repeat="edu in li.profile.educations.values">
-                          <h5><i class="fa fa-university"></i> Institution</h5>
-                          {{edu.schoolName}}
-                          <h5><i class="fa fa-graduation-cap"></i> Degree and fields of study</h5>
-                          {{edu.degree}} in {{edu.fieldOfStudy}}
-                          <h5><i class="fa fa-calendar"></i> Date</h5>
-                          {{edu.startDate.year}} - {{edu.endDate.year}}
-                          <hr />
-                        </div>
-                    </div>
-                    <!-- END EDUCATION -->
-                    <!-- SKILLS -->
-                    <div class="col-md-12" ng-show="tabToShow == 'skills'">
-                     <!-- <span class="label label-primary font-size-full"
-                      		ng-repeat="skill in li.profile.skills.values">{{skill.skill.name}}</span>-->
-                          <div class="row" style="margin-top:1em;">
-                            <div class="col-md-4" ng-repeat="skill in li.profile.skills.values">
-                            <p class="well" >{{skill.skill.name}}</p>
-                          </div>
-                        </div>
-                    </div>
-                    <!-- END SKILLS -->
-
-                    <!-- ABOUT -->
-                    <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'about'">
-                      <div class="row">
-                        <div class="col-md-6">
-                              <h5><i class="fa fa-align-justify"></i> Summary</h5>
-                            <p>{{li.profile.summary}}</p>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="col-md-6">
-                            <h5><i class="fa fa-map-marker"></i> Current location</h5>
-                            <h6>{{li.profile.location.name}}</h6>
-                          </div>
-                          <div class="col-md-6">
-                            <h5><i class="fa fa-users"></i> Connections</h5>
-                            <h6>{{li.profile.numConnections}}</h6>
-                          </div>
-                          <div class="col-md-6">
-                            <h5><i class="fa fa-graduation-cap"></i> Education</h5>
-                            {{li.profile.educations.values[0].fieldOfStudy}}
-                          </div>
-                          <div class="col-md-6">
-                           <h5><i class="fa fa-info-circle"></i> Linkedin Profile</h5>
-                            <a ng-href="{{li.profile.publicProfileUrl}}" target="_blank">View</a>
-                         </div>
-                       </div>
-                        
-
-                      
-                    </div>
-                    <!--  END ABOUT -->
+                  </div>
 
                 </div>
-            </div>
-          <div class="col-md-4">
+                <!-- EDUCATION -->
+                <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'education'">
+                  <div ng-repeat="edu in li.profile.educations.values">
+                    <h5><i class="fa fa-university"></i> Institution</h5>
+                    {{edu.schoolName}}
+                    <h5><i class="fa fa-graduation-cap"></i> Degree and fields of study</h5>
+                    {{edu.degree}} in {{edu.fieldOfStudy}}
+                    <h5><i class="fa fa-calendar"></i> Date</h5>
+                    {{edu.startDate.year}} - {{edu.endDate.year}}
+                    <hr />
+                  </div>
+                </div>
+                <!-- END EDUCATION -->
+                <!-- SKILLS -->
+                <div class="col-md-12" ng-show="tabToShow == 'skills'">
+                     <!-- <span class="label label-primary font-size-full"
+                     ng-repeat="skill in li.profile.skills.values">{{skill.skill.name}}</span>-->
+                     <div class="row" style="margin-top:1em;">
+                      <div class="col-md-4" ng-repeat="skill in li.profile.skills.values">
+                        <p class="well" >{{skill.skill.name}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END SKILLS -->
 
-        </div>
-      </div>
-      </div>
-      </div>
+                  <!-- ABOUT -->
+                  <div class="col-md-12 no-side-pad" ng-show="tabToShow == 'about'">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <h5> <i class="fa fa-align-justify"></i> Summary </h5>
+                          <p>{{li.profile.summary}}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-6">
+                          <h5><i class="fa fa-map-marker"></i> Current location</h5>
+                          <h6>{{li.profile.location.name}}</h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h5><i class="fa fa-users"></i> Connections</h5>
+                          <h6>{{li.profile.numConnections}}</h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h5><i class="fa fa-graduation-cap"></i> Education</h5>
+                          {{li.profile.educations.values[0].fieldOfStudy}}
+                        </div>
+                        <div class="col-md-6">
+                         <h5><i class="fa fa-info-circle"></i> Linkedin Profile</h5>
+                         <a ng-href="{{li.profile.publicProfileUrl}}" target="_blank">View</a>
+                       </div>
+                     </div>
+                     
+
+                     
+                   </div>
+                   <!--  END ABOUT -->
+
+                 </div>
+               </div>
+               <div class="col-md-4">
+
+               </div>
+             </div>
+           </div>
+         </div>
