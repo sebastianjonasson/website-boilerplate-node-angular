@@ -53,7 +53,7 @@ function router($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('app.stackoverflow', {
             url: '/stackoverflow',
-            template:'<div ui-view></div>',
+            template:'<div ui-view class="at-view-slide-in-left at-view-slide-out-left"></div>',
             resolve: {
                 items: ['stackOverflowDataService',resolveStackoverflowItems],
                 profile: ['stackOverflowDataService', resolveStackoverflowProfile],

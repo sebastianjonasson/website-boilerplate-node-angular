@@ -1,9 +1,11 @@
-<div class="row shade-2 answers-filter" ng-init="order = 'score'; filter = {}; reverse = true; search=''; showfilters = false;">
+<div ng-init="order = 'score'; filter = {}; reverse = true; search=''; showfilters = false;" >
 	<button class="btn btn-primary" 
 			style="position: fixed; top: 10px; right:20px; z-index: 1001;"
 			ng-click="showfilters = !showfilters">
 			Toggle Filters</button>
-	<div ng-show="showfilters" class="col-md-12">
+<div class="row shade-2 answers-filter at-view-slide-in-top at-view-slide-out-top" ng-show="showfilters">
+	
+	<div  class="col-md-12">
 		<div class="form-group">
       		<div class="col-lg-3">
       			<h5><i class="fa fa-filter"></i> Filter</h5>
@@ -65,9 +67,10 @@
 		</div>
 	</div>
 </div>
+</div>
 <div class="list-group">
   <a ng-href="#/stackoverflow/item/{{item.answer_id}}" 
-  	 class="list-group-item" 
+  	 class="list-group-item at-repeat-fade-in at-repeat-fade-out" 
   	 ng-repeat="item in soCtrl.items | filter:filter | orderBy:order:reverse">
 	    <h4 class="list-group-item-heading"><small>{{item.score}}</small> {{item.title}} <small ng-if="item.is_accepted" class="primary-color pull-right">Accepted Answer</small></h4>
 	    <p class="list-group-item-text">{{soCtrl.getDate(item.creation_date)}}</p>
