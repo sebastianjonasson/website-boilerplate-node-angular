@@ -16,6 +16,9 @@ function stackOverflowItemsController(items, profile, $sce, $mdSidenav, $mdMedia
         this.items = filteredItems;
     }
     this.getHtml = $sce.trustAsHtml;
+    this.unescape = function(input) {
+        return input.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); })
+    }
     this.getDate = function(timestamp) {
         var millsec = (parseInt(timestamp)) * 1000;
         return new Date(millsec).toDateString();

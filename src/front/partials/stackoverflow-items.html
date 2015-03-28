@@ -72,7 +72,7 @@
   <a ng-href="#/stackoverflow/item/{{item.answer_id}}" 
   	 class="list-group-item at-repeat-fade-in at-repeat-fade-out" 
   	 ng-repeat="item in soCtrl.items | filter:filter | orderBy:order:reverse">
-	    <h4 class="list-group-item-heading"><small>{{item.score}}</small> {{item.title}} <small ng-if="item.is_accepted" class="primary-color pull-right">Accepted Answer</small></h4>
+	    <h4 class="list-group-item-heading"><small>{{item.score}}</small> {{soCtrl.unescape(item.title)}} <small ng-if="item.is_accepted" class="primary-color"> Accepted Answer</small></h4>
 	    <p class="list-group-item-text">{{soCtrl.getDate(item.creation_date)}}</p>
   </a>
 </div>

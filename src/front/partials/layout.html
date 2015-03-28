@@ -1,4 +1,5 @@
 <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+
      <div class="col-md-2 shade-2 sidebar at-view-slide-out-top at-view-slide-out-top" ng-show="appCtrl.hideSidebar == false">
         <h3>Sebastian Jonasson</h3>
         <hr />
@@ -6,7 +7,7 @@
           <li role="presentation"><i class="fa fa-stack-overflow"></i> Stack Overflow</li>
           <li role="presentation"><a href="#/stackoverflow/profile"><i class="fa fa-user"></i> Profile</a></li>
           <li role="presentation"><a href="#/stackoverflow/answers"><i class="fa fa-reply"></i> Answers</a></li>
-          <li role="presentation"><a href="#/stackoverflow/questions"><i class="fa fa-reply"></i> Questions</a></li>
+          <li role="presentation"><a href="#/stackoverflow/questions"><i class="fa fa-question"></i> Questions</a></li>
           <li role="presentation"><i class="fa fa-linkedin"></i> Linkedin</li>
           <li role="presentation"><a href="#linkedin/profile"><i class="fa fa-user"></i> Profile</a></li>
           <li role="presentation"><i class="fa fa-github"></i> Github</li>
@@ -17,8 +18,10 @@
           <li role="presentation"><a href="#">Github repo for this website</a></li>
         </ul>
 	  </div>
-	  <div class=" no-side-pad" 
+	  <div class="no-side-pad" id="main"
          ng-class="{'col-md-12': appCtrl.hideSidebar, 'col-md-offset-2': !appCtrl.hideSidebar, 'col-md-10': !appCtrl.hideSidebar}">
-	  	<div class="at-view-slide-in-left at-view-slide-out-left" ui-view  id="secondary-wrapper"></div>
+         <button class="btn btn-primary" id="menu-button" ng-click="appCtrl.hideSidebar = !appCtrl.hideSidebar">Menu</button>
+	  	<div class="at-view-scale-in at-view-fade-out" ui-view  id="secondary-wrapper"></div>
+
 	  </div>
 </div>

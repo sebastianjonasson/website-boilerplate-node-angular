@@ -23,5 +23,9 @@ function stackOverflowQuestionsController(questions, profile, $sce) {
     }
     
     this.getHtml = $sce.trustAsHtml;
+
+    this.unescape = function(input) {
+        return input.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); })
+    }
     
 }
