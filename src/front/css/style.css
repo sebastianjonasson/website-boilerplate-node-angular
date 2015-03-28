@@ -100,5 +100,8 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
   z-index: 800;
   position:relative;
   top:0;
+}
 
+.cursor-pointer {
+  cursor:pointer;
 }

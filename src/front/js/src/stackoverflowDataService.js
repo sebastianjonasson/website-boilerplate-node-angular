@@ -27,7 +27,6 @@ function stackOverflowDataService($http, $q) {
             question = q;
           }
         })
-        console.log(question);
         return question;
     };
 
@@ -36,13 +35,9 @@ function stackOverflowDataService($http, $q) {
     }
 
     stackOverflowDataService.getAnswer = function(id) {
-    	console.log("enters");
         var answer;
-        console.log(answersCache)
         angular.forEach(answersCache.data.items, function(a) {
-        	console.log(a);
         	if(a.answer_id == id) {
-        		console.log("has match");
         		answer = a;
         	}
         })
@@ -411,7 +406,6 @@ function stackOverflowDataService($http, $q) {
             data: acitivityData
         };
         deffered.resolve(a);
-        console.log(a);
 
         return deffered.promise;
     }

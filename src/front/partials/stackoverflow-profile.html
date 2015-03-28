@@ -49,12 +49,14 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="answer in so.recentAnswers"
-                          ng-click="so.viewAnswer(answer.answer_id);">
+                          ng-click="so.viewAnswer(answer.answer_id);"
+                          class="cursor-pointer">
                         <td>
                           {{answer.title}}
                         </td>
                       </tr>
-                      <tr ui-sref="app.stackoverflow.answers">
+                      <tr ui-sref="app.stackoverflow.answers"
+                          class="cursor-pointer">
                         <td>View All</td>
                       </tr>
                     </tbody>
@@ -73,10 +75,12 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="question in so.recentQuestions"
-                          ng-click="so.viewQuestion(question.question_id);">
+                          ng-click="so.viewQuestion(question.question_id);"
+                          class="cursor-pointer">
                         <td>{{question.title}}</td>
                       </tr>
-                      <tr ui-sref="app.stackoverflow.questions">
+                      <tr ui-sref="app.stackoverflow.questions"
+                          class="cursor-pointer">
                         <td>View All</td>
                       </tr>
                     </tbody>

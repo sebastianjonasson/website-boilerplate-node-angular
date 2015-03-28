@@ -1,4 +1,4 @@
-function router($stateProvider, $urlRouterProvider, $locationProvider) {
+function router($stateProvider, $urlRouterProvider, $locationProvider, $rootScope) {
     var resolveStackoverflowItems = function(stackOverflowDataService) {
             return stackOverflowDataService.getData();
         },

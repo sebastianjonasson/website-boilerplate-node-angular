@@ -2,7 +2,7 @@
   <a ng-href="#/stackoverflow/questions/{{item.question_id}}" 
   	 class="list-group-item" 
   	 ng-repeat="item in soCtrl.questions">
-	    <h4 class="list-group-item-heading">{{item.title}}</h4>
+	    <h4 class="list-group-item-heading"><small>{{item.score}}</small> {{item.title}}</h4>
 	    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
   </a>
 </div>

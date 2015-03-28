@@ -11,10 +11,26 @@
               <div class="row">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                  <li role="presentation" ng-click="tabToShow='about'" ng-class="{active: (tabToShow=='about')}"><a aria-controls="about" role="tab">About</a></li>
-                  <li role="presentation" ng-click="tabToShow='work'" ng-class="{active: (tabToShow=='work')}"><a aria-controls="work-history" role="tab">Experience</a></li>
-                  <li role="presentation" ng-click="tabToShow='education'" ng-class="{active: (tabToShow=='education')}"><a aria-controls="education" role="tab" >Education</a></li>
-                  <li role="presentation" ng-click="tabToShow='skills'" ng-class="{active: (tabToShow=='skills')}"><a aria-controls="skills" role="tab" >Skills</a></li>
+                  <li role="presentation" 
+                      ng-click="tabToShow='about'" 
+                      ng-class="{active: (tabToShow=='about')}"
+                      class="cursor-pointer">
+                      <a aria-controls="about" role="tab">About</a></li>
+                  <li role="presentation" 
+                      ng-click="tabToShow='work'" 
+                      ng-class="{active: (tabToShow=='work')}"
+                      class="cursor-pointer">
+                      <a aria-controls="work-history" role="tab">Experience</a></li>
+                  <li role="presentation" 
+                      ng-click="tabToShow='education'" 
+                      ng-class="{active: (tabToShow=='education')}"
+                      class="cursor-pointer">
+                      <a aria-controls="education" role="tab" >Education</a></li>
+                  <li role="presentation" 
+                      ng-click="tabToShow='skills'" 
+                      ng-class="{active: (tabToShow=='skills')}"
+                      class="cursor-pointer">
+                      <a aria-controls="skills" role="tab" >Skills</a></li>
                 </ul>
 
                 <!-- Tab panes -->

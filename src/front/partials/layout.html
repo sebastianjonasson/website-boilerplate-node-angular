@@ -1,5 +1,5 @@
 <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
-     <div class="col-md-2 shade-2 sidebar" ng-hide="appCtrl.hideSidebar">
+     <div class="col-md-2 shade-2 sidebar at-view-slide-out-top at-view-slide-out-top" ng-show="appCtrl.hideSidebar == false">
         <h3>Sebastian Jonasson</h3>
         <hr />
         <ul class="nav nav-pills nav-stacked">
@@ -16,9 +16,9 @@
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation"><a href="#">Github repo for this website</a></li>
         </ul>
-
 	  </div>
-	  <div class="col-md-10 col-md-offset-2 no-side-pad">
+	  <div class=" no-side-pad" 
+         ng-class="{'col-md-12': appCtrl.hideSidebar, 'col-md-offset-2': !appCtrl.hideSidebar, 'col-md-10': !appCtrl.hideSidebar}">
 	  	<div class="at-view-slide-in-left at-view-slide-out-left" ui-view  id="secondary-wrapper"></div>
 	  </div>
 </div>
