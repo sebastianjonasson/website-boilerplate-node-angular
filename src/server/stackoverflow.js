@@ -109,8 +109,6 @@ var stackexchangeAPIRequest = function(endpoint, getParams, method, cb) {
 		  'Accept-Encoding': 'gzip'
 		};
 
-	console.log(requestUrl);
-
 	reqData = {
 		url: requestUrl,
 		method:method,

@@ -16,34 +16,37 @@ var clientId = credentials.github.client_id,
 /*
  *	Interface
  */
-exports.githubAuthRoute = function(req, res) {
-	var code = req.query.code,
-		authData = {
+exports.requestAccessTokenAndData = function(code) {
+	console.log(code);
+	var authData = {
 			client_id: clientId,
 			client_secret: clientSecret,
 			code: code,
 			accept: 'json'
 		};
 
-	request.post({url: "https://github.com/login/oauth/access_token", form: authData}, function(err,httpResponse,body){
-		access_token = body.slice(13,53);
-		getRepos();
-		getProfile();
-		console.log(access_token);
-	})
+	requestAccessToken(authData);
 }
 
-exports.profile = function(req, res) {
-	res.json(profile);
-}
-
-exports.repos = function(req, res) {
-	res.json(repos);
+exports.getProfile = function() {
+	return profile;
+};
+exports.getRepos = function() {
+	return repos;
 }
 
 /*
  *	Functions
  */
+var requestAccessToken = function(authData) {
+	request.post({url: "https://github.com/login/oauth/access_token", form: authData}, function(err,httpResponse,body){
+		console.log(body)
+		access_token = body.slice(13,53);
+		console.log(access_token);
+		getRepos();
+		getProfile();
+	})
+}
 
 var getRepos = function() {
 	var options = {

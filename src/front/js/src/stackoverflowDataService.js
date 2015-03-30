@@ -47,14 +47,12 @@ function stackOverflowDataService($http, $q) {
     stackOverflowDataService.getActivity = function() {
         return $http.get('/stackoverflow/activity')
                     .then(function(response) {
-                      console.log(response);
                       return convertActivityData(response.data.items);
                     });
     }
 
 
     var convertActivityData = function(activites) {
-      console.log(activites);
         var deffered = $q.defer(),
             datas = {},
             activityLables = [],

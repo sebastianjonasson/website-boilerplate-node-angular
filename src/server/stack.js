@@ -3,8 +3,7 @@ var request = require('request'),
 	app = express(),
 	linkedin = require('./linkedin'),
 	stackoverflow = require('./stackoverflow'),
-	github = require('./github');
-
+	github = require('./handlers/github');
 
 app.get('/code', stackoverflow.authRoute);
 app.get('/github/auth', github.githubAuthRoute);
@@ -17,11 +16,9 @@ app.get('/github/repos', github.repos);
 app.get('/github/profile', github.profile);
 app.get('/linkedin/profile', linkedin.profile);
 
-
 app.use('/client', express.static('../front'));
 app.use('/public', express.static('../../public'));
 app.use('/bower_components', express.static('../../bower_components'));
-
 
 console.log("up and running!");
 app.listen(3000);

@@ -1,9 +1,8 @@
 function stackOverflowQuestionsController(questions, profile, $sce) {
     var questions = questions.data.items;
-
     this.selectedItem;
-    
     this.questions = angular.copy(questions);
+    this.getHtml = $sce.trustAsHtml;
 
     this.filterList = function(search) {
         this.questions = angular.copy(questions);
@@ -21,11 +20,8 @@ function stackOverflowQuestionsController(questions, profile, $sce) {
     this.getDate = function(date) {
         return new Date(date).toString();
     }
-    
-    this.getHtml = $sce.trustAsHtml;
 
     this.unescape = function(input) {
         return input.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); })
     }
-    
 }

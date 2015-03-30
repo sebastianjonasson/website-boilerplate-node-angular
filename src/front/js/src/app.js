@@ -11,14 +11,3 @@ angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial', 'chart.js'])
     .factory('githubDataService', ['$http',githubDataService])
     .factory('linkedInDataService', ['$http',linkedInDataService])
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', router])
-
-
-/*function mainCtrl($scope, ngProgress, $rootScope) {
-
-    $rootScope.$on('$stateChangeStart', function() {
-        ngProgress.start();
-    })
-    $rootScope.$on('$stateChangeSuccess', function() {
-        ngProgress.complete();
-    })
-}*/

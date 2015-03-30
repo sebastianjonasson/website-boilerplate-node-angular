@@ -32,7 +32,6 @@ function router($stateProvider, $urlRouterProvider, $locationProvider, $rootScop
             return stackOverflowDataService.getQuestion(id);
         }
 
-    //$locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/linkedin/profile');
     $stateProvider
         .state('start', {
