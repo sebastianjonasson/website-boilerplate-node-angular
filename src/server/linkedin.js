@@ -2,7 +2,8 @@
  *	Includes
  */
 var request = require('request'),
-	credentials = require('../../credentials');
+	credentials = require('../../credentials'),
+	dataService = require('./data-services/linkedin');
 
 /*
  *	Fields
@@ -17,23 +18,21 @@ var profileData;
 /*
  *	Interface
  */
-exports.auth = function(req, res) {
-	if(!auth_code) {
-		auth_code = req.query.code;
-		var tokenUrl = buildTokenUrl();
-		
-		request.post({url:tokenUrl}, function(err,httpResponse,body){ 
-			body = JSON.parse(body);
-			access_token = body.access_token;
-			getProfile();
-		})
-	} else {
-		getProfile();
-	}
+exports.requestAccessTokenAndProfile = function(code) {
+	auth_code = code;
+	var tokenUrl = buildTokenUrl();
+	console.log(tokenUrl)
+	return dataService.getAccessToken(tokenUrl)
+				.then(function(token) {
+					console.log(token)
+					access_token = token;
+				})
+				.then(getProfile);
+	
 };
 
-exports.profile = function(req, res) {
-	res.json(profileData);
+exports.getProfile = function() {
+	return profileData;
 }
 
 
@@ -42,10 +41,10 @@ exports.profile = function(req, res) {
  */
 var getProfile = function() {
 	var url = buildProfileEndpointUrl();
-	request(url, function(error, response, body) {
-		console.log(body);
-		profileData = JSON.parse(body);
-	});
+	return dataService.getProfile(url)
+		.then(function(profile) {
+			profileData = profile;
+		})
 }
 
 var buildTokenUrl = function() {

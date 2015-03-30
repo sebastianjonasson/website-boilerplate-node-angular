@@ -1,7 +1,7 @@
 var request = require('request'),
 	express = require('express'),
 	app = express(),
-	linkedin = require('./linkedin'),
+	linkedin = require('./handlers/linkedin'),
 	stackoverflow = require('./stackoverflow'),
 	github = require('./handlers/github');
 

@@ -10,6 +10,6 @@ exports.repos = function(req, res) {
 
 exports.githubAuthRoute = function(req, res) {
 	var code = req.query.code;
-
+	
 	github.requestAccessTokenAndData(code);
 }

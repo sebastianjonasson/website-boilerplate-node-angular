@@ -2,7 +2,8 @@
  *	Includes
  */
 var request = require('request'),
-	credentials = require('../../credentials');
+	credentials = require('../../credentials'),
+	dataService = require('./data-services/github');
 
 /*
  *	Fields
@@ -17,7 +18,6 @@ var clientId = credentials.github.client_id,
  *	Interface
  */
 exports.requestAccessTokenAndData = function(code) {
-	console.log(code);
 	var authData = {
 			client_id: clientId,
 			client_secret: clientSecret,
@@ -25,7 +25,13 @@ exports.requestAccessTokenAndData = function(code) {
 			accept: 'json'
 		};
 
-	requestAccessToken(authData);
+	return dataService.getAccessToken(authData)
+					  .then(function(token) {
+					  	access_token = token;
+					  	return token;
+					  })
+					  .then(getProfile)
+					  .then(getRepos);
 }
 
 exports.getProfile = function() {
@@ -38,43 +44,16 @@ exports.getRepos = function() {
 /*
  *	Functions
  */
-var requestAccessToken = function(authData) {
-	request.post({url: "https://github.com/login/oauth/access_token", form: authData}, function(err,httpResponse,body){
-		console.log(body)
-		access_token = body.slice(13,53);
-		console.log(access_token);
-		getRepos();
-		getProfile();
-	})
-}
-
 var getRepos = function() {
-	var options = {
-		params: {
-			access_token: access_token
-		},
-		url: "https://api.github.com/user/repos?type=all&access_token="+access_token,
-		headers: {
-			'User-Agent': 'Personal Website'
-		}
-	}
-	
-	request.get(options, function(err,httpResponse,body) {
-		repos = JSON.parse(body);
-	})
+	return dataService.getRepos(access_token)
+			   .then(function(reposData) {
+			   		repos = reposData;
+			   })
 }
 
 var getProfile = function() {
-	var optionsProfile = {
-		params: {
-			access_token: access_token
-		},
-		url: "https://api.github.com/user?access_token="+access_token,
-		headers: {
-			'User-Agent': 'Personal Website'
-		}
-	}
-	request.get(optionsProfile, function(err,httpResponse,body) {
-		profile = JSON.parse(body);
-	})
+	return dataService.getRepos(access_token)
+			   .then(function(profileData) {
+			   		profile = profileData;
+			   })
 }
