@@ -34,12 +34,9 @@ function router($stateProvider, $urlRouterProvider, $locationProvider, $rootScop
 
     $urlRouterProvider.otherwise('/linkedin/profile');
     $stateProvider
-        .state('start', {
-            templateUrl: 'links.html',
-            url: '/'
-        })
         .state('app', {
             abstract: true,
+            url: '/',
             templateUrl: 'partials/layout.html',
             controller: 'appController as appCtrl',
             resolve: {
