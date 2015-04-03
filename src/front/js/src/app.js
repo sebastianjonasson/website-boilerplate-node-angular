@@ -1,5 +1,5 @@
 angular.module('website', ['ui.router', 'ngAnimate', 'ngMaterial', 'chart.js'])
-    .controller('appController', ['$rootScope','$window', appController])
+    .controller('appController', ['$rootScope','$window', '$location', '$anchorScroll', appController])
     .controller('stackOverflowItemsController', ['items', '$sce','$mdSidenav','$mdMedia', stackOverflowItemsController])
     .controller('stackOverflowQuestionsController', ['questions', 'profile', '$sce', stackOverflowQuestionsController])
     .controller('stackOverflowProfileController', ['profile','activity','items','$state','questions', stackOverflowProfileController])
