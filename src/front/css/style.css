@@ -71,14 +71,14 @@ html, body, #wrapper.ng-scope, #secondary-wrapper.ng-scope, .container-fluid.ng-
 }
 
 .header {
-	background-image:url('/client/img/header.jpg');
+	background-image:url('/client/img/swirl_pattern.png');
 	min-height: 200px;
 	z-index: 998;
 	margin-bottom: 1em;
 }
 
 .git-header {
-  background-image:url('/client/img/header.jpg');
+  background-image:url('/client/img/swirl_pattern.png');
   min-height: 200px;
   z-index: 998;
   margin-bottom: 1em;
