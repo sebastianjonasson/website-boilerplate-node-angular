@@ -36,7 +36,6 @@ function router($stateProvider, $urlRouterProvider, $locationProvider, $rootScop
     $stateProvider
         .state('app', {
             abstract: true,
-            url: '/',
             templateUrl: 'partials/layout.html',
             controller: 'appController as appCtrl',
             resolve: {
